@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     ChampionsRoutingModule,
-    RouterModule
+    RouterModule,
   ]
 })
 export class ChampionsModule { }
