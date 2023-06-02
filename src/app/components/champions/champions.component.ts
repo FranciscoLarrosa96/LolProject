@@ -11,7 +11,7 @@ import { LolServiceService } from 'src/app/services/lol-service.service';
 export class ChampionsComponent implements OnInit {
   // Array of champs
   championsExtractorName:any[] = [];
-  championsFullData!:ChampionData;
+  championsFullData:any [] = [];
   champsNames:string[] = [];
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -33,22 +33,19 @@ export class ChampionsComponent implements OnInit {
 
 
   // Get img champ
-  getChampionImageURL(name:string,num:number) {
+  getChampionImageURL(name:any,num:any) {
     return `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_${num}.jpg`;
   }
  
   // Get champ data by his name, example : "Annie"
   getChampDataByName(name:string){
     name = this.capitalizeFirstLetter(name);
-    console.log('asdsad',name);
     
     this.lolService.getChampionData(name)
     .pipe(takeUntil(this._unsubscribeAll))
     .subscribe({
       next: (champData:ChampionData) =>{
-        this.championsFullData = champData;
-        console.log('funca?',this.championsFullData);
-        
+        this.championsFullData.push(champData);
       }
     });
   }
@@ -67,10 +64,21 @@ export class ChampionsComponent implements OnInit {
           this.championsExtractorName = Object.values(champsData.data);
         // Get all names champs
           this.championsExtractorName.forEach(element=> {
-              this.champsNames.push(element.name.replace(/\s|\./g, '')) 
+              this.champsNames.push(element.id.replace(/\s|\./g, ''));
           });
-            console.log('sadasd',this.champsNames);
+
             
+            this.champsNames.forEach(element => {
+            this.getChampDataByName(element);
+          });
+
+          setTimeout(() => {
+            this.championsFullData.forEach((item, index) => {
+              this.championsFullData.push(Object.values(this.championsFullData[index].data));
+            });
+            
+            console.log('funca?',this.championsFullData);
+          }, 1500);
       }
     });
   }

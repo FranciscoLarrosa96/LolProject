@@ -1,2 +1,12 @@
-<p>champions works!</p>
-<img [src]="getChampionImageURL('Annie',1)" alt="Champion Image">
+
+<div class="conteiner">
+    <mat-list class="listImg" role="list">
+        <mat-list-item *ngFor="let champ of championsFullData; let i = index" role="listitem">
+            <p>Name champ: {{champ.id}}</p>
+            <img [src]="getChampionImageURL(champ.id, champ.skins[i].num)" alt="Champion Image">
+        </mat-list-item>
+      </mat-list>
+</div>
+
+
+  
