@@ -13,4 +13,9 @@ export class LolServiceService {
    let url = `https://ddragon.leagueoflegends.com/cdn/13.11.1/data/es_MX/champion/${nameChamp}.json`;
    return this.http.get<ChampionData>(url);
   }
+
+  getAllChampionsData():Observable<ChampionData>{
+    let url = 'https://ddragon.leagueoflegends.com/cdn/13.11.1/data/es_MX/champion.json';
+    return this.http.get<ChampionData>(url);
+  }
 }
