@@ -1,11 +1,11 @@
 
 <div class="conteiner">
-    <mat-list class="listImg" role="list">
-        <mat-list-item *ngFor="let champ of championsFullData; let i = index" role="listitem">
+      <mat-card class="card" *ngFor="let champ of championsFullData; let i = index">
+        <mat-card-content class="card">
             <p>Name champ: {{champ.id}}</p>
-            <img [src]="getChampionImageURL(champ.id, champ.skins[i].num)" alt="Champion Image">
-        </mat-list-item>
-      </mat-list>
+            <img [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
+        </mat-card-content>
+      </mat-card>
 </div>
 
 

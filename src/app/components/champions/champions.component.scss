@@ -1,10 +1,19 @@
 .conteiner{
-    height: 100vh;
-    width: 100vw;
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
 }
 
 
 .listImg{
     height: 100%;
     width: 100%;
+}
+
+
+.card img{
+    max-width: 300px;
+    max-height: 300px;
 }

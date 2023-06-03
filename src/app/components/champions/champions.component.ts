@@ -12,6 +12,7 @@ export class ChampionsComponent implements OnInit {
   // Array of champs
   championsExtractorName:any[] = [];
   championsFullData:any [] = [];
+  championsFullDataCopy:any [] = [];
   champsNames:string[] = [];
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -45,7 +46,7 @@ export class ChampionsComponent implements OnInit {
     .pipe(takeUntil(this._unsubscribeAll))
     .subscribe({
       next: (champData:ChampionData) =>{
-        this.championsFullData.push(champData);
+        this.championsFullData.push(champData.data[name]);
       }
     });
   }
@@ -66,19 +67,11 @@ export class ChampionsComponent implements OnInit {
           this.championsExtractorName.forEach(element=> {
               this.champsNames.push(element.id.replace(/\s|\./g, ''));
           });
-
-            
+          // Sort by name
+          this.champsNames.sort();
             this.champsNames.forEach(element => {
             this.getChampDataByName(element);
           });
-
-          setTimeout(() => {
-            this.championsFullData.forEach((item, index) => {
-              this.championsFullData.push(Object.values(this.championsFullData[index].data));
-            });
-            
-            console.log('funca?',this.championsFullData);
-          }, 1500);
       }
     });
   }
