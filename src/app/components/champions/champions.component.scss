@@ -2,8 +2,15 @@
     max-width: 120rem;
     width: 90%;
     margin: 0 auto;
+    grid-column-gap: 40px;
+    grid-row-gap: 80px;
+    align-items: center;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(5,1fr);
+    justify-content: center;
+    max-height: 100%;
+    max-width: 80%;
+
 }
 
 
@@ -13,7 +20,13 @@
 }
 
 
-.card img{
-    max-width: 300px;
-    max-height: 300px;
+
+
+.card:hover img{transform: scale(1.1);    transition: all .5s cubic-bezier(0.25, 0.1, 0, 1.65);
+}
+
+
+
+.body--card{
+    padding: 0 !important;
 }

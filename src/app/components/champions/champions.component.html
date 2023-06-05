@@ -1,8 +1,7 @@
 
 <div class="conteiner">
       <mat-card class="card" *ngFor="let champ of championsFullData; let i = index">
-        <mat-card-content class="card">
-            <p>Name champ: {{champ.id}}</p>
+        <mat-card-content class="body--card">
             <img [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
         </mat-card-content>
       </mat-card>
