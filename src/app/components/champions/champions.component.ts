@@ -35,7 +35,7 @@ export class ChampionsComponent implements OnInit {
 
   // Get img champ
   getChampionImageURL(name:any,num:any) {
-    return `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_${num}.jpg`;
+    return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${name}_${num}.jpg`;
   }
  
   // Get champ data by his name, example : "Annie"
