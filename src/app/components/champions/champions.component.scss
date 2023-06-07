@@ -37,6 +37,7 @@ body{
     position: relative;
     overflow: hidden;
     background-color: black;
+    cursor: pointer;
   }
 .card img {
     width: 100%;
@@ -70,20 +71,7 @@ body{
   }
 
   
-//   .card::before {
-//     transform: skewY(-20deg);
-//     transform-origin: top left;
-//   }
   
-//   .card::after {
-//     transform: skewY(20deg);
-//     transform-origin: bottom right;
-//   }
-  
- 
-
-
-
 
 .tittle{
     text-align: center;
@@ -99,4 +87,23 @@ body{
   
   .mat-card-content {
     padding: 0;
+  }
+
+
+  .btnPosition{
+    background: none;
+  }
+
+  .listButtons{
+    display: flex;
+    justify-content: center
+  }
+
+  .listButtons li{
+    margin-right: 8px;
+  }
+
+  .asterisco{
+    width: 72px;
+    height: 72px;
   }

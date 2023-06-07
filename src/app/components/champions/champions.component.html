@@ -1,24 +1,49 @@
 <div class="mainConteiner">
     <div class="headContent">
         <div class="tittle">
-            <ul>
-                <li><a href="/champ/"></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
-                <li><a href=""></a></li>
+            <div class="search">
+                <input type="text" (keydown)="searchByName($event)">
+            </div>
+            <ul class="listButtons">
+                <li>
+                    <button (click)="sortByPosition('adc')" class="btnPosition" title="Marksman">
+                        <img src="../../../assets/icons/Position_Challenger-Bot.png" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button (click)="sortByPosition('support')" class="btnPosition" title="Support">
+                        <img src="../../../assets/icons/Position_Challenger-Support.png" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button (click)="sortByPosition('mid')" class="btnPosition" title="Middle">
+                        <img src="../../../assets/icons/Position_Challenger-Mid.png" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button (click)="sortByPosition('jungle')" class="btnPosition" title="Jungle">
+                        <img src="../../../assets/icons/Position_Challenger-Jungle.png" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button (click)="sortByPosition('top')" class="btnPosition" title="Top">
+                        <img src="../../../assets/icons/Position_Challenger-Top.png" alt="">
+                    </button>
+                </li>
+                <li>
+                    <button (click)="sortByPosition('all')" class="btnPosition" title="All Champs">
+                        <img class="asterisco" src="../../../assets/icons/asterisco.png" alt="">
+                    </button>
+                </li>
             </ul>
         </div>
     </div>
-    
-    <div class="conteiner">
-          <mat-card class="card" *ngFor="let champ of championsFullData; let i = index">
+
+    <div  class="conteiner">
+        <mat-card class="card" *ngFor="let champ of championsFullDataCopy; let i = index">
             <mat-card-content class="body--card">
-                <img  [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
+                <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
             </mat-card-content>
-          </mat-card>
+        </mat-card>
     </div>
 </div>
-
-
-
-  
