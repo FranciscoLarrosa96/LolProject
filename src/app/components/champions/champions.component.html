@@ -1,16 +1,24 @@
-<div class="headContent">
-    <div class="tittle">
-        
+<div class="mainConteiner">
+    <div class="headContent">
+        <div class="tittle">
+            <ul>
+                <li><a href="/champ/"></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+                <li><a href=""></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="conteiner">
+          <mat-card class="card" *ngFor="let champ of championsFullData; let i = index">
+            <mat-card-content class="body--card">
+                <img  [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
+            </mat-card-content>
+          </mat-card>
     </div>
 </div>
 
-<div class="conteiner">
-      <mat-card class="card" *ngFor="let champ of championsFullData; let i = index">
-        <mat-card-content class="body--card">
-            <img  [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
-        </mat-card-content>
-      </mat-card>
-</div>
 
 
   
