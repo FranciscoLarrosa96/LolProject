@@ -45,10 +45,10 @@
     </div>
 
     <div  class="conteiner">
-        <mat-card class="card" *ngFor="let champ of championsFullDataCopy; let i = index" [attr.id]="champ.id" >
-            <mat-card-content class="body--card">
+        <div class="card" *ngFor="let champ of championsFullDataCopy; let i = index">
+            <div class="body--card">
                 <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
-            </mat-card-content>
-        </mat-card>
+            </div>
+        </div>
     </div>
 </div>
