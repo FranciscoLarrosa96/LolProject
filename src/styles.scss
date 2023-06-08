@@ -34,9 +34,15 @@ $ProyectoLol-theme: mat.define-light-theme((
 @include mat.all-component-themes($ProyectoLol-theme);
 
 /* You can add global styles to this file, and also import other style files */
-
+@font-face {
+  font-family: 'Friz Quadrata Std Italic';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Friz Quadrata Std Italic'), url('./assets/fonts/friz-quadrata-std-italic-587033b2c95df.woff') format('woff');
+  }
+ 
 html, body {  }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+body { margin: 0; font-family: 'Friz Quadrata Std Italic', "Friz Quadrata Std Italic", sans-serif; 
 
   background: #150417;
 }

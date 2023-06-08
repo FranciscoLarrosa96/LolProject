@@ -1,8 +1,13 @@
-<div class="mainConteiner">
+<div #container class="mainConteiner">
     <div class="headContent">
-        <div class="tittle">
+        <div class="header">
+            <div class="tittle">
+                <p>
+                    Funciona?
+                </p>
+            </div>
             <div class="search">
-                <input type="text" (keydown)="searchByName($event)">
+                <input type="text" (input)="searchByName($event)">
             </div>
             <ul class="listButtons">
                 <li>
@@ -40,7 +45,7 @@
     </div>
 
     <div  class="conteiner">
-        <mat-card class="card" *ngFor="let champ of championsFullDataCopy; let i = index">
+        <mat-card class="card" *ngFor="let champ of championsFullDataCopy; let i = index" [attr.id]="champ.id" >
             <mat-card-content class="body--card">
                 <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
             </mat-card-content>

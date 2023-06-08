@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { fuseAnimations } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
@@ -17,6 +17,7 @@ export class ChampionsComponent implements OnInit {
   championsFullDataCopy: any[] = [];
   championsSortByPosition: any[] = [];
   champsNames: string[] = [];
+
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(private lolService: LolServiceService) { }
@@ -111,17 +112,15 @@ export class ChampionsComponent implements OnInit {
     
   }
 
-
-  searchByName(event:Event){
-    let filteredData: any[] = this.championsFullData;
+// Search by name champ
+  searchByName(event: Event) {
     const target = event.target as HTMLInputElement;
-    const {value} = target;
-    if(value === ''){
+    const value = target.value.toLowerCase();
+    
+    if (value === '') {
       this.championsFullDataCopy = this.championsFullData;
-    }else{
-      setTimeout(() => {
-        this.championsFullDataCopy = filteredData.filter(item => item.id.toLowerCase().includes(value));
-      }, 500);
+    } else {
+        this.championsFullDataCopy = this.championsFullData.filter(item => item.id.toLowerCase().includes(value));
     }
   }
 

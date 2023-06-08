@@ -1,23 +1,25 @@
-img{
-  max-width: 100% !important;
-  display: block;
+img {
+    max-width: 100% !important;
+    display: block;
 }
 
 
-body{
-  background: rgb(87,26,94);
-  background: -moz-linear-gradient(90deg, rgba(87,26,94,1) 0%, rgba(172,12,155,1) 57%, rgba(0,212,255,1) 100%) !important;
-  background: -webkit-linear-gradient(90deg, rgba(87,26,94,1) 0%, rgba(172,12,155,1) 57%, rgba(0,212,255,1) 100%) !important;
-  background: linear-gradient(90deg, rgba(87,26,94,1) 0%, rgba(172,12,155,1) 57%, rgba(0,212,255,1) 100%) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#571a5e",endColorstr="#00d4ff",GradientType=1) !important;
+
+body {
+    background: rgb(87, 26, 94);
+    background: -moz-linear-gradient(90deg, rgba(87, 26, 94, 1) 0%, rgba(172, 12, 155, 1) 57%, rgba(0, 212, 255, 1) 100%) !important;
+    background: -webkit-linear-gradient(90deg, rgba(87, 26, 94, 1) 0%, rgba(172, 12, 155, 1) 57%, rgba(0, 212, 255, 1) 100%) !important;
+    background: linear-gradient(90deg, rgba(87, 26, 94, 1) 0%, rgba(172, 12, 155, 1) 57%, rgba(0, 212, 255, 1) 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#571a5e", endColorstr="#00d4ff", GradientType=1) !important;
 }
-.conteiner{
+
+.conteiner {
     width: 70%;
     margin: 0 auto;
     display: grid;
     grid-column-gap: 40px;
     grid-row-gap: 80px;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-content: center;
 
 }
@@ -27,7 +29,7 @@ body{
 // }
 
 
-.body--card{
+.body--card {
     padding: 0 !important;
 }
 
@@ -38,20 +40,21 @@ body{
     overflow: hidden;
     background-color: black;
     cursor: pointer;
-  }
+}
+
 .card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.25, 0.1, 0, 1.65);
-  }
-  
-  .card:hover img {
-    transform: scale(1.1);
-  }
+}
 
-  .card::before,
-  .card::after {
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card::before,
+.card::after {
     content: "";
     position: absolute;
     top: -10px;
@@ -63,47 +66,64 @@ body{
     opacity: 0;
     transition: opacity 0.3s;
     background-size: 83% 119%;
-  }
+}
 
-  .card:hover::before,
-  .card:hover::after {
+.card:hover::before,
+.card:hover::after {
     opacity: 1;
-  }
-
-  
-  
-
-.tittle{
-    text-align: center;
 }
 
 
 
 
-  .mat-card {
+.header {
+    text-align: center;
+}
+
+.tittle {
+    color: white;
+}
+
+
+
+
+.mat-card {
     padding: 0;
     margin: 0;
-  }
-  
-  .mat-card-content {
+}
+
+.mat-card-content {
     padding: 0;
-  }
+}
 
 
-  .btnPosition{
+.btnPosition {
     background: none;
-  }
+}
 
-  .listButtons{
+.listButtons {
     display: flex;
     justify-content: center
-  }
+}
 
-  .listButtons li{
+.listButtons li {
     margin-right: 8px;
-  }
+}
 
-  .asterisco{
+.asterisco {
     width: 72px;
     height: 72px;
-  }
+}
+
+
+.hidden {
+    opacity: .4;
+}
+
+.hidden {
+    transition: opacity .5s linear;
+}
+
+.show {
+    opacity: 1;
+}
