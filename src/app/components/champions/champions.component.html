@@ -44,10 +44,13 @@
         </div>
     </div>
 
-    <div  class="conteiner">
-        <div class="card" *ngFor="let champ of championsFullDataCopy; let i = index">
-            <div class="body--card">
-                <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
+    <div class="conteiner">
+        <div class="row" 
+            *ngFor="let champ of championsFullDataCopy; let i = index" appInViewport >
+            <div class="card">
+                <div class="body--card">
+                    <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
+                </div>
             </div>
         </div>
     </div>

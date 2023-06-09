@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit } from '@angular/core';
+import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { fuseAnimations } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
 import { LolServiceService } from 'src/app/services/lol-service.service';
@@ -8,9 +8,9 @@ import { LolServiceService } from 'src/app/services/lol-service.service';
   selector: 'app-champions',
   templateUrl: './champions.component.html',
   styleUrls: ['./champions.component.scss'],
-  animations:[fuseAnimations]
+  animations: [fuseAnimations]
 })
-export class ChampionsComponent implements OnInit {
+export class ChampionsComponent implements OnInit, AfterViewInit {
   // Array of champs
   championsExtractorName: any[] = [];
   championsFullData: any[] = [];
@@ -21,6 +21,42 @@ export class ChampionsComponent implements OnInit {
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(private lolService: LolServiceService) { }
+  ngAfterViewInit(): void {
+    // Obtén todas las filas de tarjetas
+    const rows = document.querySelectorAll('.row');
+
+    // Función para comprobar si un elemento está en el centro de la pantalla
+    function isElementInViewport(el:any) {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= windowHeight &&
+        rect.right <= windowWidth
+      );
+    }
+
+    // Función para manejar el desplazamiento de la página
+    function handleScroll() {
+      rows.forEach(row => {
+        if (isElementInViewport(row)) {
+          row.classList.add('show');
+        } else {
+          row.classList.remove('show');
+        }
+      });
+    }
+
+    // Agrega el evento de desplazamiento a la ventana
+    window.addEventListener('scroll', handleScroll);
+
+    // Ejecuta la función al cargar la página para mostrar las filas iniciales
+    handleScroll();
+
+  }
 
 
 
@@ -89,7 +125,7 @@ export class ChampionsComponent implements OnInit {
         filteredData = this.championsFullData.filter(item => item.tags.includes('Marksman'));
         break;
       case 'support':
-        filteredData = this.championsFullData.filter(item => (item.tags.includes('Support') ||(item.tags.includes('Support')&& item.tags.includes('Tank')) ));
+        filteredData = this.championsFullData.filter(item => (item.tags.includes('Support') || (item.tags.includes('Support') && item.tags.includes('Tank'))));
         break;
       case 'mid':
         filteredData = this.championsFullData.filter(item => item.tags.includes('Mage') || item.tags.includes('Assassin'));
@@ -109,18 +145,18 @@ export class ChampionsComponent implements OnInit {
     }
     this.championsFullDataCopy = [];
     this.championsFullDataCopy = [...filteredData];
-    
+
   }
 
-// Search by name champ
+  // Search by name champ
   searchByName(event: Event) {
     const target = event.target as HTMLInputElement;
     const value = target.value.toLowerCase();
-    
+
     if (value === '') {
       this.championsFullDataCopy = this.championsFullData;
     } else {
-        this.championsFullDataCopy = this.championsFullData.filter(item => item.id.toLowerCase().includes(value));
+      this.championsFullDataCopy = this.championsFullData.filter(item => item.id.toLowerCase().includes(value));
     }
   }
 

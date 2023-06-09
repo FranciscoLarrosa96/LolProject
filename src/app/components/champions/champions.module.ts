@@ -5,11 +5,13 @@ import { ChampionsRoutingModule } from './champions-routing.module';
 import { ChampionsComponent } from './champions.component';
 import { RouterModule } from '@angular/router';
 import { MaterialDesignModule } from 'src/material/material-design.module';
+import { InViewportDirective } from '../../in-viewport.directive';
 
 
 @NgModule({
   declarations: [
-    ChampionsComponent
+    ChampionsComponent,
+    InViewportDirective
   ],
   imports: [
     CommonModule,
