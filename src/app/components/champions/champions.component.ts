@@ -145,7 +145,13 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
     }
     this.championsFullDataCopy = [];
     this.championsFullDataCopy = [...filteredData];
-
+    // Fix opacity
+    const containerElement = document.querySelectorAll('.row');
+    containerElement.forEach(element => {
+      element.classList.add('show')
+    });
+    
+    
   }
 
   // Search by name champ

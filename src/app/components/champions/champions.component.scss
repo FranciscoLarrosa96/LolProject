@@ -95,6 +95,7 @@ body {
 
 .btnPosition {
     background: none;
+    cursor: pointer;
 }
 
 .listButtons {
@@ -130,4 +131,17 @@ body {
 
 .footer{
     height: 100px;
+}
+
+.tittle p{
+    font-size: 37px;
+}
+
+.bordered-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #665c10;
+    -webkit-text-fill-color: #f5eaea;
 }
