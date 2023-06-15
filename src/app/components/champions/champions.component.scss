@@ -98,6 +98,14 @@ body {
     cursor: pointer;
 }
 
+.btnPosition:hover,
+.btnPosition:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0.5em 0.1em rgb(197, 165, 20);
+}
+
 .listButtons {
     display: flex;
     justify-content: center

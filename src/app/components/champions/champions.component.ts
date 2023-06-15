@@ -17,7 +17,8 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
   championsFullDataCopy: any[] = [];
   championsSortByPosition: any[] = [];
   champsNames: string[] = [];
-
+  mouseHover:boolean[] = [];
+  namesIcons:string[] = ['Assassin','Fighter','Mage','Marksman','Support','Tank'];
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(private lolService: LolServiceService) { }
@@ -166,7 +167,17 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // Converts the variable to true if the mouse is hovered over the card
+  showDescription(index: number){
+    this.mouseHover[index] = true;
+  }
+  // Converts the variable to false if the mouse leaves the card
+  hiddenDescription(index: number){
+    this.mouseHover[index] = false;
+  }
 
+
+  
   // Convert "annie" on "Annie"
   capitalizeFirstLetter(word: string) {
     return word.charAt(0).toUpperCase() + word.slice(1);
