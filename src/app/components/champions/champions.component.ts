@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit } from '@angular/core';
 import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
-import { fuseAnimations } from 'src/app/core/animation';
+import { champAnimation } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
 import { LolServiceService } from 'src/app/services/lol-service.service';
 
@@ -8,7 +8,7 @@ import { LolServiceService } from 'src/app/services/lol-service.service';
   selector: 'app-champions',
   templateUrl: './champions.component.html',
   styleUrls: ['./champions.component.scss'],
-  animations: [fuseAnimations]
+  animations: [champAnimation]
 })
 export class ChampionsComponent implements OnInit, AfterViewInit {
   // Array of champs

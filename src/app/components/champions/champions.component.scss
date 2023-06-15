@@ -137,11 +137,11 @@ body {
     transition: opacity .5s linear;
 }
 
-.footer{
+.footer {
     height: 100px;
 }
 
-.tittle p{
+.tittle p {
     font-size: 37px;
 }
 
@@ -152,4 +152,15 @@ body {
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #665c10;
     -webkit-text-fill-color: #f5eaea;
+}
+
+.detail {
+    display: flex;
+    position: absolute;
+    z-index: 9999;
+    top: 354px;
+    height: 41px;
+    width: 41px;
+    right: 155px;
+    justify-content: space-between;
 }
