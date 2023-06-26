@@ -15,7 +15,7 @@ body {
 
 .conteiner {
     width: 70%;
-    margin: 0 auto;
+    margin: 8rem auto;
     display: grid;
     grid-column-gap: 40px;
     grid-row-gap: 80px;
@@ -74,7 +74,6 @@ body {
 
 .header {
     text-align: center;
-    display: flex;
     justify-content: space-between;
     position: fixed;
     top: 0;
@@ -83,6 +82,7 @@ body {
     background: rgb(149 47 145 / 50%);
     backdrop-filter: blur(10px); 
     z-index: 999; 
+    height: 4rem;
 }
 
 .tittle {
@@ -115,10 +115,10 @@ body {
 
 .btnPosition:hover,
 .btnPosition:focus {
-    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    border-bottom: 0.20em solid rgb(197, 165, 20);
+    box-shadow: 0 0.1em 0.1em -0.1em rgb(197, 165, 20);
     transform: translateY(-0.25em);
     transition: all 0.3s ease;
-    box-shadow: 0 0 0.5em 0.1em rgb(197, 165, 20);
 }
 
 .listButtons {
@@ -155,11 +155,12 @@ body {
 
 .tittle p {
     font-size: 37px;
+    position: relative;
+    top: -27px;
 }
 
 .bordered-text {
     font-size: 24px;
-    font-weight: bold;
     color: white;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #665c10;
@@ -177,6 +178,64 @@ body {
     justify-content: space-between;
 }
 
-.search input{
-    border-radius: 10px;
+.search{
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 8rem;
+    background-color: white;
+    justify-content: center;
+    width: 22%;
+    margin: 0 auto;
+    border-radius: 20px;
 }
+
+
+.search input{
+    all: unset;
+    width: 15rem;
+}
+
+::ng-deep .search input::placeholder {
+    color: rgb(149 47 145 / 50%);
+  }
+
+.buttons{
+    position: relative;
+    top: 121px;
+}
+
+.logo{
+    position: absolute;
+    height: 36px;
+    right: 1046px;
+    top: 13px;
+}
+
+
+.header {
+    background-color: rgb(149 47 145 / 50%);
+  }
+  
+  .header::before,
+  .header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 50px;
+    background-color: rgb(149 47 145 / 50%);
+    border-radius: 50%;
+  }
+  
+  .header::before {
+    left: 0;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  
+  .header::after {
+    right: 0;
+    transform: translateX(50%) rotate(-45deg);
+  }
+  
+  

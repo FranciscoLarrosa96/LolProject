@@ -1,49 +1,50 @@
 <div #container class="mainConteiner">
-    <div class="headContent">
         <div class="header">
             <div class="tittle">
+                <img class="logo" src="../../../assets/icons/logito.png" alt="">
                 <p class="bordered-text">
-                    GG_IZI
+                    Lol Project
                 </p>
             </div>
-            <div class="search">
-                <input type="text" (input)="searchByName($event)">
-            </div>
-            <ul class="listButtons">
-                <li>
-                    <button (click)="sortByPosition('adc')" class="btnPosition" title="Marksman">
-                        <img src="../../../assets/icons/Position_Challenger-Bot.png" alt="">
-                    </button>
-                </li>
-                <li>
-                    <button (click)="sortByPosition('support')" class="btnPosition" title="Support">
-                        <img src="../../../assets/icons/Position_Challenger-Support.png" alt="">
-                    </button>
-                </li>
-                <li>
-                    <button (click)="sortByPosition('mid')" class="btnPosition" title="Middle">
-                        <img src="../../../assets/icons/Position_Challenger-Mid.png" alt="">
-                    </button>
-                </li>
-                <li>
-                    <button (click)="sortByPosition('jungle')" class="btnPosition" title="Jungle">
-                        <img src="../../../assets/icons/Position_Challenger-Jungle.png" alt="">
-                    </button>
-                </li>
-                <li>
-                    <button (click)="sortByPosition('top')" class="btnPosition" title="Top">
-                        <img src="../../../assets/icons/Position_Challenger-Top.png" alt="">
-                    </button>
-                </li>
-                <li>
-                    <button (click)="sortByPosition('all')" class="btnPosition" title="All Champs">
-                        <img class="asterisco" src="../../../assets/icons/asterisco.png" alt="">
-                    </button>
-                </li>
-            </ul>
         </div>
+    <div class="search">
+        <mat-icon>search</mat-icon>
+        <input type="text" (input)="searchByName($event)" placeholder="Search champion by name...">
     </div>
-
+    <div class="buttons">
+        <ul class="listButtons">
+            <li>
+                <button (click)="sortByPosition('adc')" class="btnPosition" title="Marksman">
+                    <img src="../../../assets/icons/Position_Challenger-Bot.png" alt="">
+                </button>
+            </li>
+            <li>
+                <button (click)="sortByPosition('support')" class="btnPosition" title="Support">
+                    <img src="../../../assets/icons/Position_Challenger-Support.png" alt="">
+                </button>
+            </li>
+            <li>
+                <button (click)="sortByPosition('mid')" class="btnPosition" title="Middle">
+                    <img src="../../../assets/icons/Position_Challenger-Mid.png" alt="">
+                </button>
+            </li>
+            <li>
+                <button (click)="sortByPosition('jungle')" class="btnPosition" title="Jungle">
+                    <img src="../../../assets/icons/Position_Challenger-Jungle.png" alt="">
+                </button>
+            </li>
+            <li>
+                <button (click)="sortByPosition('top')" class="btnPosition" title="Top">
+                    <img src="../../../assets/icons/Position_Challenger-Top.png" alt="">
+                </button>
+            </li>
+            <li>
+                <button (click)="sortByPosition('all')" class="btnPosition" title="All Champs">
+                    <img class="asterisco" src="../../../assets/icons/asterisco.png" alt="">
+                </button>
+            </li>
+        </ul>
+    </div>
     <div class="conteiner">
         <div class="row" 
             *ngFor="let champ of championsFullDataCopy; let i = index" appInViewport >

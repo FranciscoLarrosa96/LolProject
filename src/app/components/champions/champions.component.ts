@@ -17,8 +17,8 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
   championsFullDataCopy: any[] = [];
   championsSortByPosition: any[] = [];
   champsNames: string[] = [];
-  mouseHover:boolean[] = [];
-  namesIcons:string[] = ['Assassin','Fighter','Mage','Marksman','Support','Tank'];
+  mouseHover: boolean[] = [];
+  namesIcons: string[] = ['Assassin', 'Fighter', 'Mage', 'Marksman', 'Support', 'Tank'];
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(private lolService: LolServiceService) { }
@@ -27,7 +27,7 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
     const rows = document.querySelectorAll('.row');
 
     // Función para comprobar si un elemento está en el centro de la pantalla
-    function isElementInViewport(el:any) {
+    function isElementInViewport(el: any) {
       const rect = el.getBoundingClientRect();
       const windowHeight = window.innerHeight || document.documentElement.clientHeight;
       const windowWidth = window.innerWidth || document.documentElement.clientWidth;
@@ -151,8 +151,8 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
     containerElement.forEach(element => {
       element.classList.add('show')
     });
-    
-    
+
+
   }
 
   // Search by name champ
@@ -164,20 +164,25 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
       this.championsFullDataCopy = this.championsFullData;
     } else {
       this.championsFullDataCopy = this.championsFullData.filter(item => item.id.toLowerCase().includes(value));
+      // Fix opacity
+      const containerElement = document.querySelectorAll('.row');
+      containerElement.forEach(element => {
+        element.classList.add('show')
+      });
     }
   }
 
   // Converts the variable to true if the mouse is hovered over the card
-  showDescription(index: number){
+  showDescription(index: number) {
     this.mouseHover[index] = true;
   }
   // Converts the variable to false if the mouse leaves the card
-  hiddenDescription(index: number){
+  hiddenDescription(index: number) {
     this.mouseHover[index] = false;
   }
 
 
-  
+
   // Convert "annie" on "Annie"
   capitalizeFirstLetter(word: string) {
     return word.charAt(0).toUpperCase() + word.slice(1);
