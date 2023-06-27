@@ -212,30 +212,14 @@ body {
     top: 13px;
 }
 
-
-.header {
-    background-color: rgb(149 47 145 / 50%);
-  }
+.iconPosition{
+    margin-right: 67px;
+}
   
-  .header::before,
-  .header::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: 50%;
-    height: 50px;
-    background-color: rgb(149 47 145 / 50%);
-    border-radius: 50%;
-  }
-  
-  .header::before {
-    left: 0;
-    transform: translateX(-50%) rotate(45deg);
-  }
-  
-  .header::after {
-    right: 0;
-    transform: translateX(50%) rotate(-45deg);
-  }
+.iconPositionAlone{
+    margin: 0;
+    position: relative;
+    right: -57px;
+}
   
   

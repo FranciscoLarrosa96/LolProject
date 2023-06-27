@@ -53,7 +53,8 @@
                     <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
                 </div>
                 <div *ngIf="mouseHover[i]" class="detail" >
-                    <img src="../../../assets/icons/{{champ.tags[i]}}.png" alt="">
+                    <img [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"  src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
+                    <img *ngIf="champ.tags.length > 1" src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
                 </div>
             </div>
         </div>

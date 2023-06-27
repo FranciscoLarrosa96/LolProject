@@ -175,6 +175,8 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
   // Converts the variable to true if the mouse is hovered over the card
   showDescription(index: number) {
     this.mouseHover[index] = true;
+    console.log(this.championsFullData[index]);
+    
   }
   // Converts the variable to false if the mouse leaves the card
   hiddenDescription(index: number) {
