@@ -21,8 +21,8 @@ export class LolServiceService {
                 next: (res:ChampionData) => {
                   console.log('resss',res.data[route.params['id']]);
                   let dataa = res.data[route.params['id']];
-                  let {data} = res;
-                  console.log('resss2222',data.id);
+                  let {skins} = res.data[route.params['id']];
+                  console.log('resss2222',skins);
                 }
               })
                 resolve('');
