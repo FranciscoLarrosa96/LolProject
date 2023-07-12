@@ -3,14 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path : '**',
-    redirectTo : 'champions',
-    pathMatch : 'full'
-  },
-  {
     path: 'champions',
     loadChildren: () => import('./components/champions/champions.module').then(m => m.ChampionsModule)
-  }
+  },
+  {
+    path: 'champion/:id',
+    loadChildren: () => import('./components/champion/champion.module').then(m => m.ChampionModule)
+  },
+  {
+    path : '**',
+    redirectTo : 'champions',
+  },
 ];
 
 @NgModule({

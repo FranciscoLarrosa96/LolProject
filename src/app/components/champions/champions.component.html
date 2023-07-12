@@ -49,12 +49,17 @@
         <div class="row" 
             *ngFor="let champ of championsFullDataCopy; let i = index" appInViewport >
             <div class="card" (mouseenter)="showDescription(i)" (mouseleave)="hiddenDescription(i)">
+                <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image" class="champion-image">
                 <div class="body--card">
-                    <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image">
-                </div>
-                <div *ngIf="mouseHover[i]" class="detail" >
-                    <img [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"  src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
-                    <img *ngIf="champ.tags.length > 1" src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
+                    <div class="nameAndTittle">
+                        <p class="nameChamp">{{champ.id}}</p>
+                        <p class="tittleChamp">{{champ.title | titlecase}}</p>
+                    </div>
+                    
+                    <div *ngIf="mouseHover[i]" class="detail">
+                        <img [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"  src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
+                        <img *ngIf="champ.tags.length > 1" src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>

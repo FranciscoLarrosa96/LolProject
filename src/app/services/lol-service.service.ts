@@ -2,12 +2,38 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ChampionData } from '../interfaces/champion.interface';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class LolServiceService {
 
   constructor(private http:HttpClient) { }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
+    return new Promise((resolve, reject) => {
+        Promise.all([
+        ]).then(
+            () => {
+              console.log('entroooooooooo',route.params['id']);
+              this.getChampionData(route.params['id'])
+              .subscribe({
+                next: (res:ChampionData) => {
+                  console.log('resss',res.data[route.params['id']]);
+                  let dataa = res.data[route.params['id']];
+                  let {data} = res;
+                  console.log('resss2222',data.id);
+                }
+              })
+                resolve('');
+            },
+            (error) => {
+              resolve(error);
+            }
+        );
+    });
+}
+
 
   getChampionData(nameChamp:string):Observable<ChampionData>{
    let url = `https://ddragon.leagueoflegends.com/cdn/13.11.1/data/en_US/champion/${nameChamp}.json`;

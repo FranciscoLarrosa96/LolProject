@@ -169,12 +169,12 @@ body {
 
 .detail {
     display: flex;
-    position: absolute;
+    // position: absolute;
     z-index: 9999;
-    top: 354px;
+    // top: 354px;
     height: 41px;
     width: 41px;
-    right: 155px;
+    // right: 155px;
     justify-content: space-between;
 }
 
@@ -222,4 +222,52 @@ body {
     right: -57px;
 }
   
+.nameAndTittle{
+    color: white;
+    position: absolute;
+    top: 5rem;
+    right: -20rem;
+    z-index: 999999;
+    width: 22.3rem;
+   background: linear-gradient(0deg,#000,transparent);
+}
+
+.nameChamp{
+    font-size: 28px;
+}
+
+.tittleChamp, .nameChamp{
+    margin: 0;
+}
+
+.card{
+    position: relative;
+}
+
+.body--card{
+    position: absolute;
+    top: 18rem;
+    left: 0;
+    z-index: 9999;
+}
+
+@keyframes fadeIn {
+    from {
+      
+      transform: translateY(10px);
+    }
+    to {
+      
+      transform: translateY(0);
+    }
+  }
   
+  .detail {
+    z-index: 99999;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .nameAndTittle {
+    max-height: 100px; /* Establece la altura máxima del div */
+    transition: max-height 0.3s ease-in-out; /* Agrega una transición suave */
+  }
