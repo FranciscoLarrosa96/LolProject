@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
@@ -19,9 +20,10 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
   champsNames: string[] = [];
   mouseHover: boolean[] = [];
   namesIcons: string[] = ['Assassin', 'Fighter', 'Mage', 'Marksman', 'Support', 'Tank'];
+  tooltipMessage: string = '';
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-  constructor(private lolService: LolServiceService) { }
+  constructor(private lolService: LolServiceService, private _router:Router) { }
   ngAfterViewInit(): void {
     // Obtén todas las filas de tarjetas
     const rows = document.querySelectorAll('.row');
@@ -183,6 +185,10 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
     this.mouseHover[index] = false;
   }
 
+// Navigate to page champ description
+navigateChampPage(nameChamp:string){
+  this._router.navigate(['champion/' + nameChamp]);
+}
 
 
   // Convert "annie" on "Annie"

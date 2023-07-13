@@ -48,7 +48,7 @@
     <div class="conteiner">
         <div class="row" 
             *ngFor="let champ of championsFullDataCopy; let i = index" appInViewport >
-            <div class="card" (mouseenter)="showDescription(i)" (mouseleave)="hiddenDescription(i)">
+            <div class="card" (mouseenter)="showDescription(i)" (mouseleave)="hiddenDescription(i)" (click)="navigateChampPage(champ.id)">
                 <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image" class="champion-image">
                 <div class="body--card">
                     <div class="nameAndTittle">
