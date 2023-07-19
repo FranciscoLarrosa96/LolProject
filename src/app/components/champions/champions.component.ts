@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
@@ -65,6 +65,12 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getAllChampsData();
+    setTimeout(() => {
+      console.log('dataaaa',this.lolService.dataSignal()?.data['Annie']);
+      
+    }, 1000);
+    
+    
   }
 
   ngOnDestroy(): void {
