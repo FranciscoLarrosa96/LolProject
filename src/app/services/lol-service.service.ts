@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable,inject,signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { ChampionData } from '../interfaces/champion.interface';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 @Injectable({
@@ -8,7 +8,9 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 })
 export class LolServiceService {
 
-  constructor(private http:HttpClient) { }
+  private http = inject(HttpClient);
+  dataSignal = signal<ChampionData | undefined>(undefined);
+  constructor() { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     return new Promise((resolve, reject) => {
@@ -42,6 +44,9 @@ export class LolServiceService {
 
   getAllChampionsData():Observable<ChampionData>{
     let url = 'https://ddragon.leagueoflegends.com/cdn/13.11.1/data/en_US/champion.json';
-    return this.http.get<ChampionData>(url);
+    return this.http.get<ChampionData>(url)
+    .pipe(
+      tap((res:ChampionData) => this.dataSignal.set(res)),
+      )
   }
 }
