@@ -49,4 +49,9 @@ export class LolServiceService {
       tap((res:ChampionData) => this.dataSignal.set(res)),
       )
   }
+
+  getSkinImage(id:number){
+    let url = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_${id}.jpg`;
+    return this.http.get(url);
+  }
 }

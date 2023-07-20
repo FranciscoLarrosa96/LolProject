@@ -19,6 +19,7 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
   championsSortByPosition: any[] = [];
   champsNames: string[] = [];
   mouseHover: boolean[] = [];
+  containerEmpty: boolean = false;
   namesIcons: string[] = ['Assassin', 'Fighter', 'Mage', 'Marksman', 'Support', 'Tank'];
   tooltipMessage: string = '';
   private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -66,8 +67,7 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getAllChampsData();
     setTimeout(() => {
-      console.log('dataaaa',this.lolService.dataSignal()?.data['Annie']);
-      
+      console.log('Data signal',this.lolService.dataSignal()?.data['Annie']);
     }, 1000);
     
     
@@ -153,7 +153,11 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
         break;
     }
     this.championsFullDataCopy = [];
-    this.championsFullDataCopy = [...filteredData];
+    this.containerEmpty = true;
+    setTimeout(() => {
+      this.championsFullDataCopy = [...filteredData];
+      this.containerEmpty = false;
+    }, 300);
     // Fix opacity
     const containerElement = document.querySelectorAll('.row');
     containerElement.forEach(element => {

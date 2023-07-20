@@ -45,7 +45,7 @@
             </li>
         </ul>
     </div>
-    <div class="conteiner">
+    <div class="conteiner" [ngClass]="{'containerEmpty': containerEmpty, 'containerFull': !containerEmpty}">
         <div class="row" 
             *ngFor="let champ of championsFullDataCopy; let i = index" appInViewport >
             <div class="card" (mouseenter)="showDescription(i)" (mouseleave)="hiddenDescription(i)" (click)="navigateChampPage(champ.id)">
@@ -63,8 +63,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer">
-        <p>INFOOO</p>
     </div>
 </div>
