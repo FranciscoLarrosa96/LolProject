@@ -1,12 +1,12 @@
 <div #container class="mainConteiner">
-        <div class="header">
-            <div class="tittle">
-                <img class="logo" src="../../../assets/icons/logito.png" alt="">
-                <p class="bordered-text">
-                    Lol Project
-                </p>
-            </div>
+    <div class="header">
+        <div class="tittle">
+            <img class="logo" src="../../../assets/icons/logito.png" alt="">
+            <p class="bordered-text">
+                Lol Project
+            </p>
         </div>
+    </div>
     <div class="search">
         <mat-icon>search</mat-icon>
         <input type="text" (input)="searchByName($event)" placeholder="Search champion by name...">
@@ -14,50 +14,53 @@
     <div class="buttons">
         <ul class="listButtons">
             <li>
-                <button (click)="sortByPosition('adc')" class="btnPosition" title="Marksman">
+                <button matTooltip="Marksman" matTooltipPosition="above" (click)="sortByPosition('adc')"
+                    class="btnPosition" title="Marksman">
                     <img src="../../../assets/icons/Position_Challenger-Bot.png" alt="">
                 </button>
             </li>
             <li>
-                <button (click)="sortByPosition('support')" class="btnPosition" title="Support">
+                <button matTooltip="Support" matTooltipPosition="above" (click)="sortByPosition('support')" class="btnPosition" title="Support">
                     <img src="../../../assets/icons/Position_Challenger-Support.png" alt="">
                 </button>
             </li>
             <li>
-                <button (click)="sortByPosition('mid')" class="btnPosition" title="Middle">
+                <button matTooltip="Middle" matTooltipPosition="above" (click)="sortByPosition('mid')" class="btnPosition" title="Middle">
                     <img src="../../../assets/icons/Position_Challenger-Mid.png" alt="">
                 </button>
             </li>
             <li>
-                <button (click)="sortByPosition('jungle')" class="btnPosition" title="Jungle">
+                <button matTooltip="Jungle" matTooltipPosition="above" (click)="sortByPosition('jungle')" class="btnPosition" title="Jungle">
                     <img src="../../../assets/icons/Position_Challenger-Jungle.png" alt="">
                 </button>
             </li>
             <li>
-                <button (click)="sortByPosition('top')" class="btnPosition" title="Top">
+                <button matTooltip="Top" matTooltipPosition="above" (click)="sortByPosition('top')" class="btnPosition" title="Top">
                     <img src="../../../assets/icons/Position_Challenger-Top.png" alt="">
                 </button>
             </li>
             <li>
-                <button (click)="sortByPosition('all')" class="btnPosition" title="All Champs">
+                <button matTooltip="All Champs" matTooltipPosition="above" (click)="sortByPosition('all')" class="btnPosition" title="All Champs">
                     <img class="asterisco" src="../../../assets/icons/asterisco.png" alt="">
                 </button>
             </li>
         </ul>
     </div>
     <div class="conteiner" [ngClass]="{'containerEmpty': containerEmpty, 'containerFull': !containerEmpty}">
-        <div class="row" 
-            *ngFor="let champ of championsFullDataCopy; let i = index" appInViewport >
-            <div class="card" (mouseenter)="showDescription(i)" (mouseleave)="hiddenDescription(i)" (click)="navigateChampPage(champ.id)">
-                <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image" class="champion-image">
+        <div class="row" *ngFor="let champ of championsFullDataCopy; let i = index" appInViewport>
+            <div class="card" (mouseenter)="showDescription(i)" (mouseleave)="hiddenDescription(i)"
+                (click)="navigateChampPage(champ.id)">
+                <img [@fadeInOut] [src]="getChampionImageURL(champ.id, '0')" alt="Champion Image"
+                    class="champion-image">
                 <div class="body--card">
                     <div class="nameAndTittle">
                         <p class="nameChamp">{{champ.id}}</p>
                         <p class="tittleChamp">{{champ.title | titlecase}}</p>
                     </div>
-                    
+
                     <div *ngIf="mouseHover[i]" class="detail">
-                        <img [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"  src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
+                        <img [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"
+                            src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
                         <img *ngIf="champ.tags.length > 1" src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
                     </div>
                 </div>
