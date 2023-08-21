@@ -59,9 +59,9 @@
                     </div>
 
                     <div *ngIf="mouseHover[i]" class="detail">
-                        <img [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"
+                        <img  matTooltip="{{champ.tags[0]}}" matTooltipPosition="above" [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"
                             src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
-                        <img *ngIf="champ.tags.length > 1" src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
+                        <img matTooltip="{{champ.tags[1]}}" matTooltipPosition="above" *ngIf="champ.tags.length > 1" src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
                     </div>
                 </div>
             </div>

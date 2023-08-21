@@ -11,7 +11,7 @@ import { LolServiceService } from 'src/app/services/lol-service.service';
   styleUrls: ['./champions.component.scss'],
   animations: [champAnimation]
 })
-export class ChampionsComponent implements OnInit, AfterViewInit {
+export class ChampionsComponent implements OnInit {
   // Array of champs
   championsExtractorName: any[] = [];
   championsFullData: any[] = [];
@@ -25,42 +25,7 @@ export class ChampionsComponent implements OnInit, AfterViewInit {
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(private lolService: LolServiceService, private _router:Router) { }
-  ngAfterViewInit(): void {
-    // Obtén todas las filas de tarjetas
-    const rows = document.querySelectorAll('.row');
-
-    // Función para comprobar si un elemento está en el centro de la pantalla
-    function isElementInViewport(el: any) {
-      const rect = el.getBoundingClientRect();
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-      const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= windowHeight &&
-        rect.right <= windowWidth
-      );
-    }
-
-    // Función para manejar el desplazamiento de la página
-    function handleScroll() {
-      rows.forEach(row => {
-        if (isElementInViewport(row)) {
-          row.classList.add('show');
-        } else {
-          row.classList.remove('show');
-        }
-      });
-    }
-
-    // Agrega el evento de desplazamiento a la ventana
-    window.addEventListener('scroll', handleScroll);
-
-    // Ejecuta la función al cargar la página para mostrar las filas iniciales
-    handleScroll();
-
-  }
+  
 
 
 
