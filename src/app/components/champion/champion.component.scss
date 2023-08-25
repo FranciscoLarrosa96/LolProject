@@ -1,0 +1,73 @@
+.mainContent{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContent__header{
+    background-color: red;
+    height: 10%;
+    z-index: 9999;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.mainContent__body{
+    background-color: black;
+    height: 90%;
+        margin: 0 344px;
+}
+
+.body__tittle{
+    font-size: 120px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -6rem;
+    z-index: 99999;
+    background: #000000;
+    width: 23rem;
+    right: -26rem;
+}
+
+.body__tittle span {
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.gradiente-fondo {
+    position: absolute;
+    bottom: 200px;
+    left: 344px;
+    width: 1215px;
+    height: 50%; 
+    background: linear-gradient(to bottom, transparent, black);
+  }
+
+  .imgChamp{
+    filter: brightness(1.5);
+  }
+
+  .nameAndTittle{
+    box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.959); /* Ajusta el valor y el color según tus necesidades */
+  }
+
+  .nameAndTittle {
+    position: relative;
+  }
+
+  .nameAndTittle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 0.5px solid #8d8282;
+    transform: scale(0.97); 
+    z-index: 1;
+    height: 329px;
+  }

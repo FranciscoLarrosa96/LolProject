@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit, signal,OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
-import { LolServiceService } from 'src/app/services/lol-service.service';
+import { ChampionService } from 'src/app/services/lol-service.service';
 
 @Component({
   selector: 'app-champions',
@@ -11,7 +11,7 @@ import { LolServiceService } from 'src/app/services/lol-service.service';
   styleUrls: ['./champions.component.scss'],
   animations: [champAnimation]
 })
-export class ChampionsComponent implements OnInit {
+export class ChampionsComponent implements OnInit,OnDestroy {
   // Array of champs
   championsExtractorName: any[] = [];
   championsFullData: any[] = [];
@@ -24,22 +24,17 @@ export class ChampionsComponent implements OnInit {
   tooltipMessage: string = '';
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-  constructor(private lolService: LolServiceService, private _router:Router) { }
+  constructor(private lolService: ChampionService, private _router:Router) { }
   
 
 
 
   ngOnInit(): void {
     this.getAllChampsData();
-    setTimeout(() => {
-      console.log('Data signal',this.lolService.dataSignal()?.data['Annie']);
-    }, 1000);
-    
-    
   }
 
   ngOnDestroy(): void {
-    this._unsubscribeAll.next('');
+    this._unsubscribeAll.next(null);
     this._unsubscribeAll.complete();
   }
 
