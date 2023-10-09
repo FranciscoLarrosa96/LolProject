@@ -97,10 +97,10 @@ export class ChampionsComponent implements OnInit,OnDestroy {
         filteredData = this.championsFullData.filter(item => (item.tags.includes('Support') || (item.tags.includes('Support') && item.tags.includes('Tank'))));
         break;
       case 'mid':
-        filteredData = this.championsFullData.filter(item => item.tags.includes('Mage') || item.tags.includes('Assassin'));
+        filteredData = this.championsFullData.filter(item =>( item.tags.includes('Mage') && !item.tags.includes('Support')) || item.tags.includes('Assassin'));
         break;
       case 'jungle':
-        filteredData = this.championsFullData.filter(item => item.tags.includes('Fighter') || item.tags.includes('Tank'));
+        filteredData = this.championsFullData.filter(item => item.tags.includes('Fighter') || item.tags.includes('Tank') && !item.tags.includes('Support'));
         break;
       case 'top':
         filteredData = this.championsFullData.filter(item => item.tags.includes('Fighter') && item.tags.includes('Tank'));
@@ -131,6 +131,7 @@ export class ChampionsComponent implements OnInit,OnDestroy {
   searchByName(event: Event) {
     const target = event.target as HTMLInputElement;
     const value = target.value.toLowerCase();
+    //Agregar DILAY
 
     if (value === '') {
       this.championsFullDataCopy = this.championsFullData;

@@ -23,14 +23,19 @@
     font-size: 120px;
     text-align: center;
     color: white;
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
     position: relative;
     top: -6rem;
     z-index: 99999;
-    background: #000000;
-    width: 23rem;
     right: -26rem;
+}
+
+.title__body{
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, transparent, black);
+  position: relative;
+  top: -63px;
 }
 
 .body__tittle span {
@@ -40,7 +45,7 @@
 
 .gradiente-fondo {
     position: absolute;
-    bottom: 200px;
+    bottom: 206px;
     left: 344px;
     width: 1215px;
     height: 50%; 
@@ -48,11 +53,11 @@
   }
 
   .imgChamp{
-    filter: brightness(1.5);
+    filter: brightness(1);
   }
 
   .nameAndTittle{
-    box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.959); /* Ajusta el valor y el color según tus necesidades */
+    box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.959); 
   }
 
   .nameAndTittle {
@@ -70,4 +75,44 @@
     transform: scale(0.97); 
     z-index: 1;
     height: 329px;
+  }
+
+  .nameChamp{
+    font-size: 113px !important;
+    background: linear-gradient(to bottom, transparent,black, black);
+    padding: 0 20px;
+  }
+
+
+  .longNamePlus{
+    right: -22rem;
+  }
+
+  .shortName{
+    right: -30rem;
+  }
+
+  .longNamePlusExtra{
+    right: -20rem;
+  }
+
+  .corki,.akali,.annie,.galio,.brand,.ezreal,.illaoi,.fiora,.garen,.briar{
+    right: -29rem;
+  }
+
+  .amumu,.aphelios{
+    right: -25rem;
+  }
+
+
+  .drmundo{
+    right: -24rem;
+  }
+
+  .heimer{
+    right: -17rem;
+  }
+
+  .leona,.alistar{
+    right: -27rem;
   }

@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ChampionRoutingModule } from './champion-routing.module';
 import { RouterModule } from '@angular/router';
+import { ChampionComponent } from './champion.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ChampionComponent],
   imports: [
     CommonModule,
     ChampionRoutingModule,

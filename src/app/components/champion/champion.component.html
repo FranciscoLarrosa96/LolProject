@@ -6,9 +6,11 @@
             <div class="gradiente-fondo"></div>
         </div>
         <div class="nameAndTittle">
-            <h1 class="body__tittle">
-                <span [@fadeInOut]>{{tittleChamp}}</span>
-                {{nameChamp}}
+            <h1 class="body__tittle" [ngClass]="{'longName':nameChamp.length > 6,'longNamePlus':nameChamp.length > 7,'longNamePlusExtra':nameChamp.length > 9,'shortName':nameChamp.length < 5,'corki':nameChamp === 'Corki','akali':nameChamp === 'Akali','amumu':nameChamp === 'Amumu','annie':nameChamp === 'Annie','galio':nameChamp === 'Galio','drmundo':nameChamp === 'DrMundo','brand':nameChamp === 'Brand','ezreal':nameChamp === 'Ezreal','illaoi':nameChamp === 'Illaoi','fiora':nameChamp === 'Fiora','garen':nameChamp === 'Garen','heimer':nameChamp === 'Heimerdinger','leona':nameChamp === 'Leona','briar':nameChamp === 'Briar','aphelios':nameChamp === 'Aphelios','alistar':nameChamp === 'Alistar'}">
+                <div class="title__body">
+                    <span [@fadeInOut]>{{tittleChamp}}</span>
+                    <span [@fadeInOut] class="nameChamp">{{nameChamp}}</span>
+                </div>
             </h1>
         </div>
     </div>

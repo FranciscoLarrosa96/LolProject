@@ -29,7 +29,9 @@ export interface ChampionData {
             name: string;
           }[];
           title: string;
-        
+          "tags": {
+            type:string
+          }[];
       };
     };
   }
