@@ -5,6 +5,13 @@
             <p class="bordered-text">
                 Lol Project
             </p>
+            <!-- 
+                //TODO: TERMINAR
+             -->
+            <!-- <p>Este sitio web no está respaldado oficialmente por Riot Games y no refleja las opiniones de Riot Games ni
+                de nadie oficialmente involucrado en la producción o gestión de League of Legends.</p>
+            <p>"League of Legends" y "Riot Games" son marcas comerciales o marcas registradas de Riot Games, Inc.</p> -->
+
         </div>
     </div>
     <div class="search">
@@ -20,27 +27,32 @@
                 </button>
             </li>
             <li>
-                <button matTooltip="Support" matTooltipPosition="above" (click)="sortByPosition('support')" class="btnPosition" title="Support">
+                <button matTooltip="Support" matTooltipPosition="above" (click)="sortByPosition('support')"
+                    class="btnPosition" title="Support">
                     <img src="../../../assets/icons/Position_Challenger-Support.png" alt="">
                 </button>
             </li>
             <li>
-                <button matTooltip="Middle" matTooltipPosition="above" (click)="sortByPosition('mid')" class="btnPosition" title="Middle">
+                <button matTooltip="Middle" matTooltipPosition="above" (click)="sortByPosition('mid')"
+                    class="btnPosition" title="Middle">
                     <img src="../../../assets/icons/Position_Challenger-Mid.png" alt="">
                 </button>
             </li>
             <li>
-                <button matTooltip="Jungle" matTooltipPosition="above" (click)="sortByPosition('jungle')" class="btnPosition" title="Jungle">
+                <button matTooltip="Jungle" matTooltipPosition="above" (click)="sortByPosition('jungle')"
+                    class="btnPosition" title="Jungle">
                     <img src="../../../assets/icons/Position_Challenger-Jungle.png" alt="">
                 </button>
             </li>
             <li>
-                <button matTooltip="Top" matTooltipPosition="above" (click)="sortByPosition('top')" class="btnPosition" title="Top">
+                <button matTooltip="Top" matTooltipPosition="above" (click)="sortByPosition('top')" class="btnPosition"
+                    title="Top">
                     <img src="../../../assets/icons/Position_Challenger-Top.png" alt="">
                 </button>
             </li>
             <li>
-                <button matTooltip="All Champs" matTooltipPosition="above" (click)="sortByPosition('all')" class="btnPosition" title="All Champs">
+                <button matTooltip="All Champs" matTooltipPosition="above" (click)="sortByPosition('all')"
+                    class="btnPosition" title="All Champs">
                     <img class="asterisco" src="../../../assets/icons/asterisco.png" alt="">
                 </button>
             </li>
@@ -59,9 +71,11 @@
                     </div>
 
                     <div *ngIf="mouseHover[i]" class="detail">
-                        <img  matTooltip="{{champ.tags[0]}}" matTooltipPosition="above" [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"
+                        <img matTooltip="{{champ.tags[0]}}" matTooltipPosition="above"
+                            [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"
                             src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
-                        <img matTooltip="{{champ.tags[1]}}" matTooltipPosition="above" *ngIf="champ.tags.length > 1" src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
+                        <img matTooltip="{{champ.tags[1]}}" matTooltipPosition="above" *ngIf="champ.tags.length > 1"
+                            src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
                     </div>
                 </div>
             </div>
