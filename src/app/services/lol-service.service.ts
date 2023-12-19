@@ -29,12 +29,12 @@ export class ChampionService {
 
 
   getChampionData(nameChamp: string): Observable<ChampionData> {
-    let url = `https://ddragon.leagueoflegends.com/cdn/13.19.1/data/en_US/champion/${nameChamp}.json`;
+    let url = `https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion/${nameChamp}.json`;
     return this.http.get<ChampionData>(url);
   }
 
   getAllChampionsData(): Observable<ChampionData> {
-    let url = 'https://ddragon.leagueoflegends.com/cdn/13.19.1/data/en_US/champion.json';
+    let url = 'https://ddragon.leagueoflegends.com/cdn/13.24.1/data/en_US/champion.json';
     return this.http.get<ChampionData>(url);
   }
 
