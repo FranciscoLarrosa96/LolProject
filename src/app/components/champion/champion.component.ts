@@ -37,13 +37,13 @@ export class ChampionComponent implements OnInit, OnDestroy {
       this.championLore = this.champion.data[this.nameChamp].lore;
       this.championTags = this.champion.data[this.nameChamp].tags[0];
       this.numDifficult = this.champion.data[this.nameChamp].info.difficulty;
-        if((this.numDifficult >= 7)){
-          this.championDifficult = 'High';
-        }else if ((this.numDifficult < 7 && this.numDifficult >=4)){
-          this.championDifficult = 'Medium';
-        }else{
-          this.championDifficult = 'Low';
-        }
+      if ((this.numDifficult >= 7)) {
+        this.championDifficult = 'High';
+      } else if ((this.numDifficult < 7 && this.numDifficult >= 4)) {
+        this.championDifficult = 'Medium';
+      } else {
+        this.championDifficult = 'Low';
+      }
     });
   }
 
@@ -53,7 +53,10 @@ export class ChampionComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-
+  /**
+   * Load champ object
+   * @returns 
+   */
   getChampData(): Promise<ChampionData> {
     this.route.params
       .pipe(takeUntil(this._unsubscribeAll))
@@ -81,21 +84,35 @@ export class ChampionComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * Load data champ
+   * @param champ 
+   */
   loadData(champ: ChampionData) {
     this.tittleChamp = champ.data[this.nameChamp].title;
     //Load champ image default
     this.imgChamp = this.getSkinImage(this.nameChamp, 0);
   }
 
-  getSkinImage(name: string, num: number) {
+  /**
+   * Returns champ skins
+   * @param name 
+   * @param num 
+   * @returns 
+   */
+  getSkinImage(name: string, num: number): string {
     return `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_${num}.jpg`;
   }
 
+  /**
+   * Load champ skins in an array
+   * @param nameChamp 
+   */
   loadSkins(nameChamp: any) {
     for (let index = 0; index < this.champion.data[nameChamp].skins.length; index++) {
       this.skinArray.push(`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${nameChamp}_${this.champion.data[nameChamp].skins[index].num}.jpg`)
     }
-    // I delete the first element why it is the default skin
+    // I delete the first element because it is the default skin
     this.skinArray.shift();
   }
 }

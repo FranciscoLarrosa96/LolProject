@@ -1,7 +1,7 @@
 <div #container class="mainConteiner">
     <div class="header">
         <div class="tittle">
-            <img class="logo" src="../../../assets/icons/logito.png" alt="">
+            <img class="logo" src="../../../lolProject/assets/icons/logito.png" alt="">
             <p class="bordered-text">
                 Lol Project
             </p>
@@ -16,44 +16,45 @@
     </div>
     <div class="search">
         <mat-icon>search</mat-icon>
-        <input type="text" (input)="searchByName($event)" placeholder="Search champion by name...">
+        <!-- <input type="text" (input)="searchByName($event)" placeholder="Search champion by name..."> -->
+        <input [formControl]="searchInput"  placeholder="Search champion by name..." (input)="searchByName()">
     </div>
     <div class="buttons">
         <ul class="listButtons">
             <li>
                 <button matTooltip="Marksman" matTooltipPosition="above" (click)="sortByPosition('adc')"
                     class="btnPosition" title="Marksman">
-                    <img src="../../../assets/icons/Position_Challenger-Bot.png" alt="">
+                    <img src="../../../lolProject/assets/icons/Position_Challenger-Bot.png" alt="">
                 </button>
             </li>
             <li>
                 <button matTooltip="Support" matTooltipPosition="above" (click)="sortByPosition('support')"
                     class="btnPosition" title="Support">
-                    <img src="../../../assets/icons/Position_Challenger-Support.png" alt="">
+                    <img src="../../../lolProject/assets/icons/Position_Challenger-Support.png" alt="">
                 </button>
             </li>
             <li>
                 <button matTooltip="Middle" matTooltipPosition="above" (click)="sortByPosition('mid')"
                     class="btnPosition" title="Middle">
-                    <img src="../../../assets/icons/Position_Challenger-Mid.png" alt="">
+                    <img src="../../../lolProject/assets/icons/Position_Challenger-Mid.png" alt="">
                 </button>
             </li>
             <li>
                 <button matTooltip="Jungle" matTooltipPosition="above" (click)="sortByPosition('jungle')"
                     class="btnPosition" title="Jungle">
-                    <img src="../../../assets/icons/Position_Challenger-Jungle.png" alt="">
+                    <img src="../../../lolProject/assets/icons/Position_Challenger-Jungle.png" alt="">
                 </button>
             </li>
             <li>
                 <button matTooltip="Top" matTooltipPosition="above" (click)="sortByPosition('top')" class="btnPosition"
                     title="Top">
-                    <img src="../../../assets/icons/Position_Challenger-Top.png" alt="">
+                    <img src="../../../lolProject/assets/icons/Position_Challenger-Top.png" alt="">
                 </button>
             </li>
             <li>
                 <button matTooltip="All Champs" matTooltipPosition="above" (click)="sortByPosition('all')"
                     class="btnPosition" title="All Champs">
-                    <img class="asterisco" src="../../../assets/icons/asterisco.png" alt="">
+                    <img class="asterisco" src="../../../lolProject/assets/icons/asterisco.png" alt="">
                 </button>
             </li>
         </ul>
@@ -73,9 +74,9 @@
                     <div *ngIf="mouseHover[i]" class="detail">
                         <img matTooltip="{{champ.tags[0]}}" matTooltipPosition="above"
                             [ngClass]="{'iconPositionAlone': champ.tags.length <= 1, 'iconPosition': champ.tags.length > 1}"
-                            src="../../../assets/icons/{{champ.tags[0]}}.png" alt="">
+                            src="../../../lolProject/assets/icons/{{champ.tags[0]}}.png" alt="">
                         <img matTooltip="{{champ.tags[1]}}" matTooltipPosition="above" *ngIf="champ.tags.length > 1"
-                            src="../../../assets/icons/{{champ.tags[1]}}.png" alt="">
+                            src="../../../lolProject/assets/icons/{{champ.tags[1]}}.png" alt="">
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit, signal,OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit, signal, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject, debounceTime, fromEvent, takeUntil } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged, fromEvent, map, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
 import { ChampionService } from 'src/app/services/lol-service.service';
@@ -11,7 +12,7 @@ import { ChampionService } from 'src/app/services/lol-service.service';
   styleUrls: ['./champions.component.scss'],
   animations: [champAnimation]
 })
-export class ChampionsComponent implements OnInit,OnDestroy {
+export class ChampionsComponent implements OnInit, OnDestroy {
   // Array of champs
   championsExtractorName: any[] = [];
   championsFullData: any[] = [];
@@ -22,10 +23,13 @@ export class ChampionsComponent implements OnInit,OnDestroy {
   containerEmpty: boolean = false;
   namesIcons: string[] = ['Assassin', 'Fighter', 'Mage', 'Marksman', 'Support', 'Tank'];
   tooltipMessage: string = '';
+  searchInput: FormControl;
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
-  constructor(private lolService: ChampionService, private _router:Router) { }
-  
+  constructor(private lolService: ChampionService, private _router: Router) {
+    this.searchInput = new FormControl('');
+  }
+
 
 
 
@@ -39,15 +43,20 @@ export class ChampionsComponent implements OnInit,OnDestroy {
   }
 
 
-
-
-
-  // Get img champ
-  getChampionImageURL(name: any, num: any) {
+  /**
+   * Get img champ
+   * @param name 
+   * @param num 
+   * @returns 
+   */
+  getChampionImageURL(name: any, num: any): string {
     return `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${name}_${num}.jpg`;
   }
 
-  // Get champ data by his name, example : "Annie"
+  /**
+   * Get champ data by his name, example : "Annie"
+   * @param name 
+   */
   getChampDataByName(name: string) {
     name = this.capitalizeFirstLetter(name);
 
@@ -60,10 +69,9 @@ export class ChampionsComponent implements OnInit,OnDestroy {
       });
   }
 
-
-
-
-  // Get all champions data
+  /**
+   * Get all champions data
+   */
   getAllChampsData() {
     this.lolService.getAllChampionsData()
       .pipe(takeUntil(this._unsubscribeAll))
@@ -86,7 +94,10 @@ export class ChampionsComponent implements OnInit,OnDestroy {
       });
   }
 
-  // Sort champ list by position
+  /**
+   * Sort champ list by position
+   * @param position 
+   */
   sortByPosition(position: string) {
     let filteredData: any[] = this.championsFullData;
     switch (position) {
@@ -97,7 +108,7 @@ export class ChampionsComponent implements OnInit,OnDestroy {
         filteredData = this.championsFullData.filter(item => (item.tags.includes('Support') || (item.tags.includes('Support') && item.tags.includes('Tank'))));
         break;
       case 'mid':
-        filteredData = this.championsFullData.filter(item =>( item.tags.includes('Mage') && !item.tags.includes('Support')) || item.tags.includes('Assassin'));
+        filteredData = this.championsFullData.filter(item => (item.tags.includes('Mage') && !item.tags.includes('Support')) || item.tags.includes('Assassin'));
         break;
       case 'jungle':
         filteredData = this.championsFullData.filter(item => item.tags.includes('Fighter') || item.tags.includes('Tank') && !item.tags.includes('Support'));
@@ -127,40 +138,67 @@ export class ChampionsComponent implements OnInit,OnDestroy {
 
   }
 
-  // Search by name champ
-  searchByName(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const value = target.value.toLowerCase();
-    //Agregar DILAY
-
-    if (value === '') {
-      this.championsFullDataCopy = this.championsFullData;
-    } else {
-      this.championsFullDataCopy = this.championsFullData.filter(item => item.id.toLowerCase().includes(value));
-      // Fix opacity
-      const containerElement = document.querySelectorAll('.row');
-      containerElement.forEach(element => {
-        element.classList.add('show')
-      });
-    }
+  /**
+   * Search by name champ
+   * @param event 
+   */
+  searchByName() {
+    this.searchInput
+      .valueChanges
+      .pipe(
+        takeUntil(this._unsubscribeAll),
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(
+        {
+          next: text => {
+            if (text === '') {
+              this.championsFullDataCopy = this.championsFullData;
+            } else {
+              this.championsFullDataCopy = this.championsFullData.filter(item => item.id.toLowerCase().includes(text));
+              // Fix opacity
+              const containerElement = document.querySelectorAll('.row');
+              containerElement.forEach(element => {
+                element.classList.add('show')
+              });
+            }
+          },
+          error: err => {
+            console.warn('Error input',err);
+          }
+        },
+      );
   }
 
-  // Converts the variable to true if the mouse is hovered over the card
+  /**
+   * Converts the variable to true if the mouse is hovered over the card
+   * @param index 
+   */
   showDescription(index: number) {
     this.mouseHover[index] = true;
   }
-  // Converts the variable to false if the mouse leaves the card
+  /**
+   * Converts the variable to false if the mouse leaves the card
+   * @param index 
+   */
   hiddenDescription(index: number) {
     this.mouseHover[index] = false;
   }
 
-// Navigate to page champ description
-navigateChampPage(nameChamp:string){
-  this._router.navigate(['champion/' + nameChamp]);
-}
+  /**
+   * Navigate to page champ description
+   * @param nameChamp 
+   */
+  navigateChampPage(nameChamp: string) {
+    this._router.navigate(['champion/' + nameChamp]);
+  }
 
-
-  // Convert "annie" on "Annie"
+  /**
+   * Convert "annie" on "Annie"
+   * @param word 
+   * @returns 
+   */
   capitalizeFirstLetter(word: string) {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }

@@ -6,6 +6,7 @@ import { ChampionsComponent } from './champions.component';
 import { RouterModule } from '@angular/router';
 import { MaterialDesignModule } from 'src/material/material-design.module';
 import { InViewportDirective } from '../../in-viewport.directive';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { InViewportDirective } from '../../in-viewport.directive';
     CommonModule,
     ChampionsRoutingModule,
     RouterModule,
-    MaterialDesignModule
+    MaterialDesignModule,
+    ReactiveFormsModule
   ]
 })
 export class ChampionsModule { }

@@ -15,7 +15,7 @@
             </h1>
             <div class="details">
                 <div class="rol">
-                    <img class="rol__img" src="../../../assets/icons/{{championTags}}.png" alt="">
+                    <img class="rol__img" src="../../../lolProject/assets/icons/{{championTags}}.png" alt="">
                     <p class="rol__title">Rol</p>
                     <p class="rol__label">
                         {{championTags}}
@@ -35,7 +35,7 @@
                     </p>
                 </div>
                 <div class="bar">
-                    <img src="../../../assets/img/barra.png" alt="">
+                    <img src="../../../lolProject/assets/img/barra.png" alt="">
                 </div>
                 <div class="lore">
                     {{championLore}}
@@ -50,7 +50,7 @@
 
             </div>
         </div>
-        <div *ngIf="false" class="body__skins">
+        <div *ngIf="true" class="body__skins">
             <div *ngFor="let skin of skinArray" class="skins__card">
                 <img src="{{skin}}" alt="">
             </div>
