@@ -200,3 +200,18 @@
     text-align: center;
     font-size: 60px;
   }
+
+  .video{
+    object-fit: cover;
+  }
+
+  img{
+    max-width : 100%;
+  }
+  
+  .habilities__body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }

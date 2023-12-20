@@ -27,8 +27,10 @@
                     </p>
                     <ul class="difficulty__list">
                         <li [ngClass]="{'active' : numDifficult < 4}" class="list__item1"></li>
-                        <li [ngClass]="{'active' :  numDifficult < 7, 'inactive': numDifficult < 4}" class="list__item2"></li>
-                        <li [ngClass]="{'active' :  numDifficult > 7 , 'inactive':  numDifficult < 7}" class="list__item3"></li>
+                        <li [ngClass]="{'active' :  numDifficult < 7, 'inactive': numDifficult < 4}"
+                            class="list__item2"></li>
+                        <li [ngClass]="{'active' :  numDifficult > 7 , 'inactive':  numDifficult < 7}"
+                            class="list__item3"></li>
                     </ul>
                     <p class="difficulty__name">
                         {{championDifficult}}
@@ -47,13 +49,39 @@
                 <h2>Habilities</h2>
             </div>
             <div class="habilities__body">
+                <div class="body__videos">
+                    <!-- Videos Habilities -->
+                    <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
+                        [muted]="isMuted">
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_P1.webm"
+                            type="video/webm">
+                    </video>
+                    <!-- Videos Habilities -->
+                </div>
+                <div class="body__spells" >
+                    <img src="{{passiveUrl}}" alt="">
+                    <img *ngFor="let spell of spellsArrayNames; let i = index" src="{{spell}}" alt="spell-{{spell}}">
+                </div>
 
             </div>
         </div>
-        <div *ngIf="true" class="body__skins">
-            <div *ngFor="let skin of skinArray" class="skins__card">
+
+
+
+
+
+
+
+
+
+
+        <!-- Skins start-->
+        <div *ngIf="false" class="body__skins">
+            <div *ngFor="let skin of skinArray; let i = index" class="skins__card">
                 <img src="{{skin}}" alt="">
+                <p class="">{{skinArrayNames[i]}}</p>
             </div>
         </div>
+        <!-- Skins end-->
     </div>
 </div>

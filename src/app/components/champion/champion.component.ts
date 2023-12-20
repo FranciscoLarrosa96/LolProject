@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
@@ -15,7 +15,11 @@ export class ChampionComponent implements OnInit, OnDestroy {
   nameChamp!: string;
   tittleChamp!: string;
   imgChamp!: string;
+  passive!: string;
+  passiveUrl!: string;
   skinArray: string[] = [];
+  skinArrayNames: string[] = [];
+  spellsArrayNames: string[] = [];
   champion!: ChampionData;
   championLore!: string;
   championTags!: any;
@@ -23,8 +27,8 @@ export class ChampionComponent implements OnInit, OnDestroy {
   numDifficult!: any;
   private _champService = inject(ChampionService);
   private _unsubscribeAll: Subject<any>;
-
-
+  @ViewChild('myVideo') myVideo!: ElementRef;
+  isMuted = true;
   constructor(private route: ActivatedRoute) {
     this._unsubscribeAll = new Subject();
   }
@@ -34,6 +38,8 @@ export class ChampionComponent implements OnInit, OnDestroy {
     this.getChampData().then(champion => {
       this.loadData(champion);
       this.loadSkins(this.nameChamp);
+      this.loadSpells(this.nameChamp);
+      this.loadPassive(this.nameChamp);
       this.championLore = this.champion.data[this.nameChamp].lore;
       this.championTags = this.champion.data[this.nameChamp].tags[0];
       this.numDifficult = this.champion.data[this.nameChamp].info.difficulty;
@@ -45,6 +51,7 @@ export class ChampionComponent implements OnInit, OnDestroy {
         this.championDifficult = 'Low';
       }
     });
+
   }
 
   ngOnDestroy(): void {
@@ -108,11 +115,32 @@ export class ChampionComponent implements OnInit, OnDestroy {
    * Load champ skins in an array
    * @param nameChamp 
    */
-  loadSkins(nameChamp: any) {
+  loadSkins(nameChamp: string) {
     for (let index = 0; index < this.champion.data[nameChamp].skins.length; index++) {
-      this.skinArray.push(`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${nameChamp}_${this.champion.data[nameChamp].skins[index].num}.jpg`)
+      this.skinArray.push(`https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${nameChamp}_${this.champion.data[nameChamp].skins[index].num}.jpg`);
+      this.skinArrayNames.push(this.champion.data[nameChamp].skins[index].name)
     }
     // I delete the first element because it is the default skin
     this.skinArray.shift();
+    this.skinArrayNames.shift();
+  }
+
+  /**
+   * Load array Spells
+   * @param nameChamp 
+   */
+  loadSpells(nameChamp: string) {
+    for (let index = 0; index < this.champion.data[nameChamp].spells.length; index++) {
+      this.spellsArrayNames.push(`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${this.champion.data[nameChamp].spells[index].id}.png`)
+    }
+  }
+
+  /**
+   * Load passive image
+   * @param nameChamp 
+   */
+  loadPassive(nameChamp: string) {
+    this.passive = this.champion.data[nameChamp].passive.image.full;
+    this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/13.24.1/img/passive/${this.passive.split('.png')[0]}.png`;
   }
 }
