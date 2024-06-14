@@ -29,7 +29,6 @@ export class ChampionComponent implements OnInit, OnDestroy {
   isActive = false;
   private _champService = inject(ChampionService);
   private _unsubscribeAll: Subject<any>;
-  @ViewChild('myVideo') myVideo!: ElementRef;
   isMuted = true;
   constructor(private route: ActivatedRoute) {
     this._unsubscribeAll = new Subject();
@@ -133,7 +132,7 @@ export class ChampionComponent implements OnInit, OnDestroy {
    */
   loadSpells(nameChamp: string) {
     for (let index = 0; index < this.champion.data[nameChamp].spells.length; index++) {
-      this.spellsArrayNames.push(`https://ddragon.leagueoflegends.com/cdn/13.24.1/img/spell/${this.champion.data[nameChamp].spells[index].id}.png`)
+      this.spellsArrayNames.push(`https://ddragon.leagueoflegends.com/cdn/14.12.1/img/spell/${this.champion.data[nameChamp].spells[index].id}.png`)
     }
   }
 
@@ -143,7 +142,7 @@ export class ChampionComponent implements OnInit, OnDestroy {
    */
   loadPassive(nameChamp: string) {
     this.passive = this.champion.data[nameChamp].passive.image.full;
-    this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/13.24.1/img/passive/${this.passive.split('.png')[0]}.png`;
+    this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/14.12.1/img/passive/${this.passive.split('.png')[0]}.png`;
   }
 
   onVideoPlay() {
