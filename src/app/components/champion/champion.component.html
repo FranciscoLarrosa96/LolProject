@@ -46,23 +46,38 @@
         </div>
         <div class="body__habilities">
             <div class="habilities__title">
-                <h2>Habilities</h2>
+                <h2>Skills</h2>
             </div>
             <div class="habilities__body">
                 <div class="body__videos">
                     <!-- Videos Habilities -->
                     <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
-                        [muted]="isMuted">
+                        [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
                         <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_P1.webm"
                             type="video/webm">
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_P1.mp4">
+                    </video>
+                    <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
+                        [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
+                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_Q1.mp4"
+                            type="video/webm">
+                        <source
+                            src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_Q1.webm">
                     </video>
                     <!-- Videos Habilities -->
                 </div>
-                <div class="body__spells" >
-                    <img src="{{passiveUrl}}" alt="">
-                    <img *ngFor="let spell of spellsArrayNames; let i = index" src="{{spell}}" alt="spell-{{spell}}">
-                </div>
+                <!-- Skills -->
+                <div class="body__spells">
+                    <button class="passiveBtn" (click)="showVideoSkill(0);">
+                        <img class="imgPassive" src="{{passiveUrl}}" alt="">
+                    </button>
+                    <button (click)="showVideoSkill(i)" *ngFor="let spell of spellsArrayNames; let i = index" class="skillBtn">
+                        <img class="imgSkill" src="{{spell}}" alt="spell-{{spell}}" >
+                    </button>
 
+
+                </div>
+                <!-- Skills -->
             </div>
         </div>
 
