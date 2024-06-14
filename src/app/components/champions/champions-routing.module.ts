@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChampionsComponent } from './champions.component';
 
 const routes: Routes = [{
-  path : '',
-  component : ChampionsComponent
+  path: '',
+  component: ChampionsComponent
 }];
 
 @NgModule({

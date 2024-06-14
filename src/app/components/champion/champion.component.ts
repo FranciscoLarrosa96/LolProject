@@ -25,6 +25,8 @@ export class ChampionComponent implements OnInit, OnDestroy {
   championTags!: any;
   championDifficult!: any;
   numDifficult!: any;
+  isPlaying = false;
+  isActive = false;
   private _champService = inject(ChampionService);
   private _unsubscribeAll: Subject<any>;
   @ViewChild('myVideo') myVideo!: ElementRef;
@@ -142,5 +144,23 @@ export class ChampionComponent implements OnInit, OnDestroy {
   loadPassive(nameChamp: string) {
     this.passive = this.champion.data[nameChamp].passive.image.full;
     this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/13.24.1/img/passive/${this.passive.split('.png')[0]}.png`;
+  }
+
+  onVideoPlay() {
+    console.log('entro aca play');
+
+    this.isPlaying = true;
+  }
+
+  onVideoPause() {
+    console.log('entro aca pause');
+    this.isPlaying = false;
+  }
+
+  /**
+   * Show hability video
+   */
+  showVideoSkill(index: number) {
+
   }
 }

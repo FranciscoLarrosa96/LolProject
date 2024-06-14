@@ -165,7 +165,7 @@ export class ChampionsComponent implements OnInit, OnDestroy {
             }
           },
           error: err => {
-            console.warn('Error input',err);
+            console.warn('Error input', err);
           }
         },
       );

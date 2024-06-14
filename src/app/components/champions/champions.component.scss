@@ -80,8 +80,8 @@ body {
     left: 0;
     width: 100%;
     background: rgb(149 47 145 / 50%);
-    backdrop-filter: blur(10px); 
-    z-index: 999; 
+    backdrop-filter: blur(10px);
+    z-index: 999;
     height: 4rem;
 }
 
@@ -108,7 +108,7 @@ body {
     height: 53px;
 }
 
-.btnPosition img{
+.btnPosition img {
     height: 3rem;
 }
 
@@ -175,7 +175,7 @@ body {
     justify-content: space-between;
 }
 
-.search{
+.search {
     display: flex;
     align-items: center;
     position: relative;
@@ -188,97 +188,101 @@ body {
 }
 
 
-.search input{
+.search input {
     all: unset;
     width: 15rem;
 }
 
 ::ng-deep .search input::placeholder {
     color: rgb(149 47 145 / 50%);
-  }
+}
 
-.buttons{
+.buttons {
     position: relative;
     top: 121px;
     right: 14px;
 }
 
-.logo{
+.logo {
     position: absolute;
     height: 36px;
     right: 1046px;
     top: 13px;
 }
 
-.iconPosition{
+.iconPosition {
     margin-right: 67px;
     margin-left: 10px;
 }
-  
-.iconPositionAlone{
+
+.iconPositionAlone {
     margin: 0;
     position: relative;
     right: -57px;
 }
-  
-.nameAndTittle{
+
+.nameAndTittle {
     color: white;
     position: absolute;
     top: 5rem;
     right: -20rem;
     z-index: 999999;
     width: 22.3rem;
-//    background: linear-gradient(0deg,#000,transparent);
+    //    background: linear-gradient(0deg,#000,transparent);
 }
 
-.nameChamp{
+.nameChamp {
     font-size: 28px;
 }
 
-.tittleChamp, .nameChamp{
+.tittleChamp,
+.nameChamp {
     margin: 0;
 }
 
-.card{
+.card {
     position: relative;
 }
 
-.body--card{
+.body--card {
     position: relative;
     z-index: 9999;
 }
 
 @keyframes fadeIn {
     from {
-      
-      transform: translateY(10px);
+
+        transform: translateY(10px);
     }
+
     to {
-      
-      transform: translateY(0);
+
+        transform: translateY(0);
     }
-  }
-  
-  .detail {
+}
+
+.detail {
     z-index: 99999;
     animation: fadeIn 0.6s ease-in-out;
     position: absolute;
     left: 2rem;
     top: -7rem;
-  }
+}
 
-  .nameAndTittle {
-    max-height: 100px; /* Establece la altura máxima del div */
-    transition: max-height 0.3s ease-in-out; /* Agrega una transición suave */
+.nameAndTittle {
+    max-height: 100px;
+    /* Establece la altura máxima del div */
+    transition: max-height 0.3s ease-in-out;
+    /* Agrega una transición suave */
     position: absolute;
     left: 0.5rem;
     top: -4.1rem;
-  }
+}
 
-  .containerEmpty{
+.containerEmpty {
     height: 100vh;
-  }
+}
 
-  .containerFull{
+.containerFull {
     height: 100%;
-  }
+}
