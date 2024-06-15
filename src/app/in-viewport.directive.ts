@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appInViewport]'
+  selector: '[appInViewport]',
+  standalone: true
 })
 export class InViewportDirective {
   //En el constructor de la directiva, inyectamos el ElementRef y el Renderer2.

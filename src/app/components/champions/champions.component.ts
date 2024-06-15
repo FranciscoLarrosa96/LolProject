@@ -1,16 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, AfterViewInit, signal, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, debounceTime, distinctUntilChanged, fromEvent, map, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
+import { InViewportDirective } from 'src/app/in-viewport.directive';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
 import { ChampionService } from 'src/app/services/lol-service.service';
+import { MaterialDesignModule } from 'src/material/material-design.module';
 
 @Component({
   selector: 'app-champions',
   templateUrl: './champions.component.html',
   styleUrls: ['./champions.component.scss'],
-  animations: [champAnimation]
+  animations: [champAnimation],
+  standalone: true,
+  imports: [CommonModule, MaterialDesignModule, ReactiveFormsModule, InViewportDirective]
 })
 export class ChampionsComponent implements OnInit, OnDestroy {
   // Array of champs

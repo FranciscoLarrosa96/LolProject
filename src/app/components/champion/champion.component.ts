@@ -1,15 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, inject, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
 import { ChampionService } from 'src/app/services/lol-service.service';
+import { MaterialDesignModule } from 'src/material/material-design.module';
 
 @Component({
   selector: 'app-champion',
   templateUrl: './champion.component.html',
   styleUrls: ['./champion.component.scss'],
-  animations: [champAnimation]
+  animations: [champAnimation],
+  standalone: true,
+  imports: [CommonModule, MaterialDesignModule]
 })
 export class ChampionComponent implements OnInit, OnDestroy {
   nameChamp!: string;
@@ -30,29 +34,14 @@ export class ChampionComponent implements OnInit, OnDestroy {
   private _champService = inject(ChampionService);
   private _unsubscribeAll: Subject<any>;
   isMuted = true;
+  @ViewChild('myVideo') myVideo!: ElementRef<HTMLVideoElement>;
   constructor(private route: ActivatedRoute) {
     this._unsubscribeAll = new Subject();
   }
 
 
   ngOnInit() {
-    this.getChampData().then(champion => {
-      this.loadData(champion);
-      this.loadSkins(this.nameChamp);
-      this.loadSpells(this.nameChamp);
-      this.loadPassive(this.nameChamp);
-      this.championLore = this.champion.data[this.nameChamp].lore;
-      this.championTags = this.champion.data[this.nameChamp].tags[0];
-      this.numDifficult = this.champion.data[this.nameChamp].info.difficulty;
-      if ((this.numDifficult >= 7)) {
-        this.championDifficult = 'High';
-      } else if ((this.numDifficult < 7 && this.numDifficult >= 4)) {
-        this.championDifficult = 'Medium';
-      } else {
-        this.championDifficult = 'Low';
-      }
-    });
-
+    this.loadInfoChamp();
   }
 
   ngOnDestroy(): void {
@@ -100,6 +89,29 @@ export class ChampionComponent implements OnInit, OnDestroy {
     this.tittleChamp = champ.data[this.nameChamp].title;
     //Load champ image default
     this.imgChamp = this.getSkinImage(this.nameChamp, 0);
+    this.loadSkins(this.nameChamp);
+    this.loadSpells(this.nameChamp);
+    this.loadPassive(this.nameChamp);
+    this.championLore = this.champion.data[this.nameChamp].lore;
+    this.championTags = this.champion.data[this.nameChamp].tags[0];
+    this.numDifficult = this.champion.data[this.nameChamp].info.difficulty;
+    if ((this.numDifficult > 7)) {
+      this.championDifficult = 'High';
+    } else if ((this.numDifficult <= 7 && this.numDifficult >= 4)) {
+      this.championDifficult = 'Medium';
+    } else {
+      this.championDifficult = 'Low';
+    }
+  }
+
+  /**
+   * Load data champ promise
+   * @param champ 
+   */
+  loadInfoChamp() {
+    this.getChampData().then(champion => {
+      this.loadData(champion);
+    });
   }
 
   /**
@@ -142,17 +154,14 @@ export class ChampionComponent implements OnInit, OnDestroy {
    */
   loadPassive(nameChamp: string) {
     this.passive = this.champion.data[nameChamp].passive.image.full;
-    this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/14.12.1/img/passive/${this.passive.split('.png')[0]}.png`;
+    this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/14.12.1/img/passive/${this.passive}`;
   }
 
   onVideoPlay() {
-    console.log('entro aca play');
-
     this.isPlaying = true;
   }
 
   onVideoPause() {
-    console.log('entro aca pause');
     this.isPlaying = false;
   }
 

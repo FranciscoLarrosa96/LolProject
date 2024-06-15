@@ -1,8 +1,7 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { Observable} from 'rxjs';
 import { ChampionData } from '../interfaces/champion.interface';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,26 +12,20 @@ export class ChampionService {
 
   constructor() {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    return new Promise((resolve, reject) => {
-        Promise.all([
-        ]).then(
-            () => {
-                resolve('');
-            },
-            (error) => {
-              resolve(error);
-            }
-        );
-    });
-  }
-
-
+  /**
+   * Get champ data by name
+   * @param nameChamp 
+   * @returns 
+   */
   getChampionData(nameChamp: string): Observable<ChampionData> {
     let url = `https://ddragon.leagueoflegends.com/cdn/14.12.1/data/en_US/champion/${nameChamp}.json`;
     return this.http.get<ChampionData>(url);
   }
 
+  /**
+   * Get all champ data
+   * @returns 
+   */
   getAllChampionsData(): Observable<ChampionData> {
     let url = 'https://ddragon.leagueoflegends.com/cdn/14.12.1/data/en_US/champion.json';
     return this.http.get<ChampionData>(url);

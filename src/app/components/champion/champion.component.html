@@ -1,4 +1,4 @@
-<div class="mainContent">
+<div class="mainContent" [@fadeInOut]>
 
     <div class="mainContent__body">
         <div class="body__imgTittle">
@@ -8,7 +8,7 @@
         <div class="nameAndTittle">
             <h1 class="body__tittle"
                 [ngClass]="{'longName':nameChamp.length > 6,'longNamePlus':nameChamp.length > 7,'longNamePlusExtra':nameChamp.length > 9,'shortName':nameChamp.length < 5,'corki':nameChamp === 'Corki','akali':nameChamp === 'Akali','amumu':nameChamp === 'Amumu','annie':nameChamp === 'Annie','galio':nameChamp === 'Galio','drmundo':nameChamp === 'DrMundo','brand':nameChamp === 'Brand','ezreal':nameChamp === 'Ezreal','illaoi':nameChamp === 'Illaoi','fiora':nameChamp === 'Fiora','garen':nameChamp === 'Garen','heimer':nameChamp === 'Heimerdinger','leona':nameChamp === 'Leona','briar':nameChamp === 'Briar','aphelios':nameChamp === 'Aphelios','alistar':nameChamp === 'Alistar','janna':nameChamp === 'Janna','zilean':nameChamp === 'Zilean','milio':nameChamp === 'Milio','nautilus':nameChamp === 'Nautilus','tam':nameChamp === 'TahmKench','ivern':nameChamp === 'Ivern','taric':nameChamp === 'Taric'}">
-                <div class="title__body">
+                <div class="title__body" [ngClass]="{'annieTitle': nameChamp === 'Annie'}">
                     <span [@fadeInOut]>{{tittleChamp}}</span>
                     <span [@fadeInOut] class="nameChamp">{{nameChamp}}</span>
                 </div>
@@ -29,7 +29,7 @@
                         <li [ngClass]="{'active' : numDifficult < 4}" class="list__item1"></li>
                         <li [ngClass]="{'active' :  numDifficult < 7, 'inactive': numDifficult < 4}"
                             class="list__item2"></li>
-                        <li [ngClass]="{'active' :  numDifficult > 7 , 'inactive':  numDifficult < 7}"
+                        <li [ngClass]="{'active' :  numDifficult > 7 , 'inactive':  numDifficult < 6}"
                             class="list__item3"></li>
                     </ul>
                     <p class="difficulty__name">
