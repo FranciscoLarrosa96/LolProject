@@ -51,39 +51,56 @@
             <div class="habilities__body">
                 <div class="body__videos">
                     <!-- Videos Habilities -->
+                    <!-- P -->
+                    @for (passive of P_ability; track $index; let first = $first) {
+                    @if($first){
                     <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
                         [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_P1.webm"
-                            type="video/webm">
-                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_P1.mp4">
+                        <source src="{{passive.src1}}" type="video/webm">
+                        <source src="{{passive.src2}}">
                     </video>
+                    }
+                    }
+                    <!-- Q -->
+                    @for (q of Q_ability; track $index; let first = $first) {
+                    @if($first){
                     <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
                         [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_Q1.mp4"
-                            type="video/webm">
-                        <source
-                            src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_Q1.webm">
+                        <source src="{{q.src1}}" type="video/webm">
+                        <source src="{{q.src2}}">
                     </video>
+                    }
+                    }
+                    <!-- W -->
+                    @for (w of W_ability; track $index; let first = $first) {
+                    @if($first){
                     <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
                         [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_W1.webm"
-                            type="video/webm">
-                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_W1.mp4">
+                        <source src="{{w.src1}}" type="video/webm">
+                        <source src="{{w.src2}}">
                     </video>
+                    }
+                    }
+                    <!-- E -->
+                    @for (e of E_ability; track $index; let first = $first) {
+                    @if($first){
                     <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
                         [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_E1.mp4"
-                            type="video/webm">
-                        <source
-                            src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_E1.webm">
+                        <source src="{{e.src1}}" type="video/webm">
+                        <source src="{{e.src2}}">
                     </video>
+                    }
+                    }
+                    <!-- R -->
+                    @for (r of R_ability; track $index; let first = $first) {
+                    @if($first){
                     <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
                         [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_R1.mp4"
-                            type="video/webm">
-                        <source
-                            src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0266/ability_0266_R1.webm">
+                        <source src="{{r.src1}}" type="video/webm">
+                        <source src="{{r.src2}}">
                     </video>
+                    }
+                    }
                     <!-- Videos Habilities -->
                 </div>
                 <!-- Skills -->

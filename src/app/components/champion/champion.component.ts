@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
 import { ChampionData } from 'src/app/interfaces/champion.interface';
 import { ChampionService } from 'src/app/services/lol-service.service';
+import { AbilityVideo, abilities } from 'src/app/shared/championsSkills';
 import { MaterialDesignModule } from 'src/material/material-design.module';
 
 @Component({
@@ -35,6 +36,13 @@ export class ChampionComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
   isMuted = true;
   @ViewChild('myVideo') myVideo!: ElementRef<HTMLVideoElement>;
+  P_ability!: AbilityVideo[];
+  Q_ability!: AbilityVideo[];
+  W_ability!: AbilityVideo[];
+  E_ability!: AbilityVideo[];
+  R_ability!: AbilityVideo[];
+
+
   constructor(private route: ActivatedRoute) {
     this._unsubscribeAll = new Subject();
   }
@@ -95,6 +103,12 @@ export class ChampionComponent implements OnInit, OnDestroy {
     this.championLore = this.champion.data[this.nameChamp].lore;
     this.championTags = this.champion.data[this.nameChamp].tags[0];
     this.numDifficult = this.champion.data[this.nameChamp].info.difficulty;
+    this.P_ability = abilities[this.nameChamp].P;
+    console.log("🚀 ~ ChampionComponent ~ loadData ~ this.P_ability:", this.P_ability)
+    this.Q_ability = abilities[this.nameChamp].Q;
+    this.W_ability = abilities[this.nameChamp].W;
+    this.E_ability = abilities[this.nameChamp].E;
+    this.R_ability = abilities[this.nameChamp].R;
     if ((this.numDifficult > 7)) {
       this.championDifficult = 'High';
     } else if ((this.numDifficult <= 7 && this.numDifficult >= 4)) {
