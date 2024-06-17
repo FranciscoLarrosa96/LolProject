@@ -51,89 +51,130 @@
             <div class="habilities__body">
                 <div class="body__videos">
                     <!-- Videos Habilities -->
+                    @switch (abilityToShow) {
+                    @case ('P') {
                     <!-- P -->
-                    @for (passive of P_ability; track $index; let first = $first) {
-                    @if($first){
-                    <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
-                        [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="{{passive.src1}}" type="video/webm">
-                        <source src="{{passive.src2}}">
+                    <video class="video" #myVideo width="640" height="360" loop autoplay [muted]="isMuted"
+                        (playing)="onVideoPlay()" (pause)="onVideoPause()">
+                        <source src="{{urlVideoSpell}}_P1.mp4" type="video/webm">
+                        <source src="{{urlVideoSpell}}_P1.webm">
                     </video>
-                    }
-                    }
+                    <div class="descriptionContainer">
+                        <h2 class="passiveChamp passiveName">{{this.passiveChamp.name}}</h2>
+                        <h3 class="passiveChamp">{{this.passiveChamp.description}}</h3>
+                    </div>
+                    }@case ('Q') {
                     <!-- Q -->
-                    @for (q of Q_ability; track $index; let first = $first) {
-                    @if($first){
-                    <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
-                        [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="{{q.src1}}" type="video/webm">
-                        <source src="{{q.src2}}">
+                    <video class="video" #myVideo width="640" height="360" loop autoplay [muted]="isMuted"
+                        (playing)="onVideoPlay()" (pause)="onVideoPause()">
+                        <source
+                            src="{{urlVideoSpell}}_Q1.mp4"
+                            type="video/webm">
+                        <source
+                            src="{{urlVideoSpell}}_Q1.webm">
                     </video>
-                    }
-                    }
+                    <div class="descriptionContainer">
+                        <h2 class="passiveChamp abilityName passiveName">{{this.Q.name}}</h2>
+                        <h3 class="passiveChamp abilityDescription">{{this.Q.description}}</h3>
+                    </div>
+                    }@case ('W') {
                     <!-- W -->
-                    @for (w of W_ability; track $index; let first = $first) {
-                    @if($first){
-                    <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
-                        [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="{{w.src1}}" type="video/webm">
-                        <source src="{{w.src2}}">
+                    <video class="video" #myVideo width="640" height="360" loop autoplay [muted]="isMuted"
+                        (playing)="onVideoPlay()" (pause)="onVideoPause()">
+                        <source src="{{urlVideoSpell}}_W1.mp4" type="video/webm">
+                        <source src="{{urlVideoSpell}}_W1.webm">
                     </video>
-                    }
-                    }
+                    <div class="descriptionContainer">
+                        <h2 class="passiveChamp abilityName passiveName">{{this.W.name}}</h2>
+                        <h3 class="passiveChamp abilityDescription">{{this.W.description}}</h3>
+                    </div>
+                    }@case ('E') {
                     <!-- E -->
-                    @for (e of E_ability; track $index; let first = $first) {
-                    @if($first){
-                    <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
-                        [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="{{e.src1}}" type="video/webm">
-                        <source src="{{e.src2}}">
+                    <video class="video" #myVideo width="640" height="360" loop autoplay [muted]="isMuted"
+                        (playing)="onVideoPlay()" (pause)="onVideoPause()">
+                        <source src="{{urlVideoSpell}}_E1.mp4" type="video/webm">
+                        <source src="{{urlVideoSpell}}_E1.webm">
                     </video>
-                    }
-                    }
+                    <div class="descriptionContainer">
+                        <h2 class="passiveChamp abilityName passiveName">{{this.E.name}}</h2>
+                        <h3 class="passiveChamp abilityDescription">{{this.E.description}}</h3>
+                    </div>
+                    }@case ('R') {
                     <!-- R -->
-                    @for (r of R_ability; track $index; let first = $first) {
-                    @if($first){
-                    <video class="video" *ngIf="nameChamp === 'Aatrox'" #myVideo width="640" height="360" loop autoplay
-                        [muted]="isMuted" (playing)="onVideoPlay()" (pause)="onVideoPause()">
-                        <source src="{{r.src1}}" type="video/webm">
-                        <source src="{{r.src2}}">
+                    <video class="video" #myVideo width="640" height="360" loop autoplay [muted]="isMuted"
+                        (playing)="onVideoPlay()" (pause)="onVideoPause()">
+                        <source src="{{urlVideoSpell}}_R1.mp4" type="video/webm">
+                        <source src="{{urlVideoSpell}}_R1.webm">
                     </video>
+                    <div class="descriptionContainer">
+                        <h2 class="passiveChamp abilityName passiveName">{{this.R.name}}</h2>
+                        <h3 class="passiveChamp abilityDescription">{{this.R.description}}</h3>
+                    </div>
                     }
                     }
                     <!-- Videos Habilities -->
                 </div>
                 <!-- Skills -->
                 <div class="body__spells">
-                    <button class="passiveBtn" (click)="showVideoSkill(0);">
+                    <button class="passiveBtn" (click)="abilityToShow = 'P'">
                         <img class="imgPassive" src="{{passiveUrl}}" alt="">
                     </button>
-                    <button (click)="showVideoSkill(i)" *ngFor="let spell of spellsArrayNames; let i = index"
-                        class="skillBtn">
+                    @for (spell of spellsArrayNames; track $index; let first = $first) {
+                    @switch ($index) {
+                    @case (0) {
+                    <button (click)="abilityToShow = 'Q'" class="skillBtn">
                         <img class="imgSkill" src="{{spell}}" alt="spell-{{spell}}">
                     </button>
-
-
+                    }
+                    @case (1) {
+                    <button (click)="abilityToShow = 'W'" class="skillBtn">
+                        <img class="imgSkill" src="{{spell}}" alt="spell-{{spell}}">
+                    </button>
+                    }
+                    @case (2) {
+                    <button (click)="abilityToShow = 'E'" class="skillBtn">
+                        <img class="imgSkill" src="{{spell}}" alt="spell-{{spell}}">
+                    </button>
+                    }
+                    @case (3) {
+                    <button (click)="abilityToShow = 'R'" class="skillBtn">
+                        <img class="imgSkill" src="{{spell}}" alt="spell-{{spell}}">
+                    </button>
+                    }
+                    }
+                    }
                 </div>
                 <!-- Skills -->
             </div>
         </div>
 
 
-
-
-
-
-
-
-
-
         <!-- Skins start-->
         <div *ngIf="true" class="body__skins">
-            <div *ngFor="let skin of skinArray; let i = index" class="skins__card">
-                <img src="{{skin}}" alt="">
-                <p class="">{{skinArrayNames[i]}}</p>
+            <div class="habilities__title">
+                <h2>Skins</h2>
             </div>
+            <div class="skins__containerSwiper">
+                <swiper-container class="mySwiper" navigation="true" space-between="30" loop="true" grab-cursor="true"
+                    effect="fade" scrollbar-hide="true">
+                    @for (skin of skinArray; track $index) {
+                    <swiper-slide class="imgContainer">
+                        <img src="{{skin}}" alt="">
+                        <p class="">{{skinArrayNames[$index]}}</p>
+                    </swiper-slide>
+                    }
+                </swiper-container>
+                <swiper-container class="mySwiper2" loop="true" space-between="10" slides-per-view="4" free-mode="true"
+                    watch-slides-progress="true">
+                    @for (skin of skinArray; track $index) {
+                    <swiper-slide class="imgContainer">
+                        <img src="{{skin}}" alt="">
+                        <p class="">{{skinArrayNames[$index]}}</p>
+                    </swiper-slide>
+                    }
+                </swiper-container>
+            </div>
+
         </div>
         <!-- Skins end-->
     </div>

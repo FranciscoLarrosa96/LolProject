@@ -238,9 +238,9 @@ img {
 
 .habilities__body {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   align-items: center;
-  gap: 1rem;
+  padding: 0 1rem 0 1rem;
 }
 
 .body__spells button {
@@ -255,4 +255,39 @@ img {
   box-shadow: 0 0.1em 0.1em -0.1em rgb(197, 165, 20);
   transition: all 0.3s ease;
   transform: scale(1.2);
+}
+
+.body__videos::before{
+  content: "";
+    position: absolute;
+    top: 141%;
+    left: 46%;
+    bottom: 0;
+    border: 0.5px solid #e5ae12;
+    transform: scale(0.97);
+    z-index: 1;
+    width: 686px;
+    height: 398px;
+}
+
+.body__videos{
+  width: 70%;
+}
+
+.body__spells{
+  width: 58%;
+}
+
+.passiveChamp{
+  color: white;
+}
+
+.passiveName {
+  text-align: center;
+}
+
+.descriptionContainer{
+  min-height: 140px;
+  max-height: 140px;
+  font-size: 13px;
 }

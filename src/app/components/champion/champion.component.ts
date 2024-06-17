@@ -1,26 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy, inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ViewChild, ElementRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { champAnimation } from 'src/app/core/animation';
-import { ChampionData } from 'src/app/interfaces/champion.interface';
+import { ChampionData, SpellChamp } from 'src/app/interfaces/champion.interface';
 import { ChampionService } from 'src/app/services/lol-service.service';
-import { AbilityVideo, abilities } from 'src/app/shared/championsSkills';
 import { MaterialDesignModule } from 'src/material/material-design.module';
-
+import { register } from 'swiper/element/bundle';
+register();
 @Component({
   selector: 'app-champion',
   templateUrl: './champion.component.html',
   styleUrls: ['./champion.component.scss'],
   animations: [champAnimation],
   standalone: true,
-  imports: [CommonModule, MaterialDesignModule]
+  imports: [CommonModule, MaterialDesignModule],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class ChampionComponent implements OnInit, OnDestroy {
+  urlVideoSpell: string = '';
+  abilityToShow: string = 'P';
   nameChamp!: string;
   tittleChamp!: string;
   imgChamp!: string;
-  passive!: string;
+  passiveChamp!: any;
   passiveUrl!: string;
   skinArray: string[] = [];
   skinArrayNames: string[] = [];
@@ -36,11 +41,10 @@ export class ChampionComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
   isMuted = true;
   @ViewChild('myVideo') myVideo!: ElementRef<HTMLVideoElement>;
-  P_ability!: AbilityVideo[];
-  Q_ability!: AbilityVideo[];
-  W_ability!: AbilityVideo[];
-  E_ability!: AbilityVideo[];
-  R_ability!: AbilityVideo[];
+  Q!: SpellChamp;
+  W!: SpellChamp;
+  E!: SpellChamp;
+  R!: SpellChamp;
 
 
   constructor(private route: ActivatedRoute) {
@@ -103,12 +107,6 @@ export class ChampionComponent implements OnInit, OnDestroy {
     this.championLore = this.champion.data[this.nameChamp].lore;
     this.championTags = this.champion.data[this.nameChamp].tags[0];
     this.numDifficult = this.champion.data[this.nameChamp].info.difficulty;
-    this.P_ability = abilities[this.nameChamp].P;
-    console.log("🚀 ~ ChampionComponent ~ loadData ~ this.P_ability:", this.P_ability)
-    this.Q_ability = abilities[this.nameChamp].Q;
-    this.W_ability = abilities[this.nameChamp].W;
-    this.E_ability = abilities[this.nameChamp].E;
-    this.R_ability = abilities[this.nameChamp].R;
     if ((this.numDifficult > 7)) {
       this.championDifficult = 'High';
     } else if ((this.numDifficult <= 7 && this.numDifficult >= 4)) {
@@ -116,6 +114,7 @@ export class ChampionComponent implements OnInit, OnDestroy {
     } else {
       this.championDifficult = 'Low';
     }
+    this.loadUrlVideoSpells();
   }
 
   /**
@@ -126,6 +125,26 @@ export class ChampionComponent implements OnInit, OnDestroy {
     this.getChampData().then(champion => {
       this.loadData(champion);
     });
+  }
+
+  /**
+   * Set url video spell
+   */
+  loadUrlVideoSpells() {
+    switch (this.champion.data[this.nameChamp].key.length) {
+      case 1:
+        this.urlVideoSpell = `https://d28xe8vt774jo5.cloudfront.net/champion-abilities/000${this.champion.data[this.nameChamp].key}/ability_000${this.champion.data[this.nameChamp].key}`;
+        break;
+      case 2:
+        this.urlVideoSpell = `https://d28xe8vt774jo5.cloudfront.net/champion-abilities/00${this.champion.data[this.nameChamp].key}/ability_00${this.champion.data[this.nameChamp].key}`;
+        break;
+      case 3:
+        this.urlVideoSpell = `https://d28xe8vt774jo5.cloudfront.net/champion-abilities/0${this.champion.data[this.nameChamp].key}/ability_0${this.champion.data[this.nameChamp].key}`;
+        break;
+
+      default:
+        break;
+    }
   }
 
   /**
@@ -158,7 +177,25 @@ export class ChampionComponent implements OnInit, OnDestroy {
    */
   loadSpells(nameChamp: string) {
     for (let index = 0; index < this.champion.data[nameChamp].spells.length; index++) {
-      this.spellsArrayNames.push(`https://ddragon.leagueoflegends.com/cdn/14.12.1/img/spell/${this.champion.data[nameChamp].spells[index].id}.png`)
+      this.spellsArrayNames.push(`https://ddragon.leagueoflegends.com/cdn/14.12.1/img/spell/${this.champion.data[nameChamp].spells[index].id}.png`);
+      switch (index) {
+        case 0:
+          this.Q = this.champion.data[nameChamp].spells[index];
+          this.Q.description = this.Q.description.replace(/<\/?physicalDamage>|<br\s*\/?>|<br><br>|<font color='#9b0f5f'>|<\/font>|<\/?keywordMajor>|<font color='#FFF673'>/g, "");
+          break;
+        case 1:
+          this.W = this.champion.data[nameChamp].spells[index];
+          this.W.description = this.W.description.replace(/<\/?physicalDamage>|<br\s*\/?>|<br><br>|<font color='#9b0f5f'>|<\/font>|<\/?keywordMajor>|<font color='#FFF673'>/g, "");
+          break;
+        case 2:
+          this.E = this.champion.data[nameChamp].spells[index];
+          this.E.description = this.E.description.replace(/<\/?physicalDamage>|<br\s*\/?>|<br><br>|<font color='#9b0f5f'>|<\/font>|<\/?keywordMajor>|<font color='#FFF673'>/g, "");
+          break;
+        case 3:
+          this.R = this.champion.data[nameChamp].spells[index];
+          this.R.description = this.R.description.replace(/<\/?physicalDamage>|<br\s*\/?>|<br><br>|<font color='#9b0f5f'>|<\/font>|<\/?keywordMajor>|<font color='#FFF673'>/g, "");
+          break;
+      }
     }
   }
 
@@ -167,9 +204,11 @@ export class ChampionComponent implements OnInit, OnDestroy {
    * @param nameChamp 
    */
   loadPassive(nameChamp: string) {
-    this.passive = this.champion.data[nameChamp].passive.image.full;
-    this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/14.12.1/img/passive/${this.passive}`;
+    this.passiveChamp = this.champion.data[nameChamp].passive;
+    this.passiveChamp.description = this.passiveChamp.description.replace(/<\/?physicalDamage>|<br\s*\/?>|<br><br>|<font color='#9b0f5f'>|<font color='#FF9900'>|<font color='#cccc00'>|<\/font>|<\/?keywordMajor>|<font color='#FFF673'>/g, "");
+    this.passiveUrl = `https://ddragon.leagueoflegends.com/cdn/14.12.1/img/passive/${this.champion.data[nameChamp].passive.image.full}`;
   }
+
 
   onVideoPlay() {
     this.isPlaying = true;
